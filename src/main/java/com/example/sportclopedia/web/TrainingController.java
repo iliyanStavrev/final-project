@@ -10,6 +10,6 @@ public class TrainingController {
     @GetMapping("/details/{id}")
     public String detailsPage(@PathVariable String id){
 
-        return "details";
+        return "trainings";
     }
 }
