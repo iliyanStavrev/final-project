@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sport Application</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+</head>
+<body style="background-image: url('/images/Fitness.jpg')">
+<header th:replace="/fragments/navbar"></header>
+
+<section id="registerPage">
+    <form class="mx-auto w-25 bg-blur rounded"
+            th:action="@{/register}" th:method="post"
+            th:object="${registerDto}">
+        <fieldset>
+            <legend>Register</legend>
+
+        <div class="form-group">
+            <label for="username" class="vhide">Username</label>
+            <input th:field="*{username}"
+                   th:errorclass="is-invalid"
+                   id="username" class="form-control username" name="username" type="text" placeholder="Username">
+            <small class="invalid-feedback text-danger">
+                Username should be between 2 and 30 symbols!
+            </small>
+        </div>
+
+            <label for="fullName" class="vhide">Full name</label>
+            <input th:field="*{fullName}"
+                   th:errorclass="'is-invalid'"
+                    id="fullName" class="form-control fullName" name="fullName" type="text" placeholder="Full name">
+
+            <small class="invalid-feedback text-danger">
+                Full name should be between 4 and 40 symbols!
+            </small>
+
+            <label for="email" class="vhide">Email</label>
+            <input th:field="*{email}"
+                   th:errorclass="'is-invalid'"
+                    id="email" class="form-control email" name="email" type="text" placeholder="Email">
+
+            <small class="invalid-feedback text-danger">
+                Email error!
+            </small>
+
+            <label for="password" class="vhide">Password</label>
+            <input th:field="*{password}"
+                   th:errorclass="'is-invalid'"
+                    id="password" class="form-control password" name="password" type="password" placeholder="Password">
+
+            <small class="invalid-feedback text-danger">
+                Password should be between 2 and 30 symbols!
+            </small>
+
+            <label for="conf-pass" class="vhide">Confirm Password:</label>
+            <input id="conf-pass" class="form-control conf-pass" name="confirmPassword" type="password" placeholder="Confirm Password">
+            <p class="errors" th:if="${notMatch}">
+                Passwords don't match!
+            </p>
+
+            <button type="submit" class="register">Register</button>
+
+            <p class="field">
+                <span>If you already have profile click <a href="/login">here</a></span>
+            </p>
+        </fieldset>
+    </form>
+</section>
+
+<footer th:replace="/fragments/footer"></footer>
+</body>
+</html>

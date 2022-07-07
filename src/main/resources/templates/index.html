@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <title>My Sport Application</title>
+    <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+</head>
+
+<body>
+
+<div id="box">
+
+    <!--Navigation-->
+
+    <header th:replace="/fragments/navbar"></header>
+
+    <main id="main-content">
+        <section id="welcomePage">
+            <div id="welcome-message">
+                <h1>Welcome to My Sport Application!</h1>
+                <h1>We offer multiply trainings specially for you!
+                    <br>
+                    <a href="/register">Register</a> or <a href="/login">Login</a> to start the journey!</h1>
+            </div>
+
+            <div class="images">
+                <div class="group-img">
+                    <img src="/images/group-athletes.jpg">
+                </div>
+                <div class="group-img">
+                    <img src="/images/Fitness.jpg">
+                </div>
+                <div class="group-img">
+                    <img src="/images/Tennis.jpg">
+                </div>
+            </div>
+
+
+        </section>
+
+    </main>
+
+    <footer th:replace="/fragments/footer"></footer>
+</div>
+</body>
+
+</html>

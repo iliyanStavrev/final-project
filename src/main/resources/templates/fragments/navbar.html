@@ -1,0 +1,26 @@
+<nav xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <img src="/images/basketball-graphic.png" alt="*">
+    <a href="/">Home</a>
+    <ul>
+        <!--All user-->
+        <li sec:authorize="isAuthenticated()"><a href="/sports">Sports</a></li>
+        <li><a href="/halls">Halls</a></li>
+        <!--Only guest-->
+        <li class="guest" sec:authorize="!isAuthenticated()">
+            <a href="/login">Login</a>
+        </li>
+        <li class="guest" sec:authorize="!isAuthenticated()">
+            <a href="/register">Register</a>
+        </li>
+        <!--Only user-->
+        <li class="user" sec:authorize="isAuthenticated()"><a href="/coaches">Coaches</a></li>
+        <li class="user" sec:authorize="isAuthenticated()">
+            <form id="logout"
+                  th:action="@{/logout}" th:method="post">
+                <input type="submit" value="Logout">
+            </form>
+        </li>
+    </ul>
+</nav>

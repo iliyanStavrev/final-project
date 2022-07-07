@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sport Application</title>
+    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+</head>
+<body style="background-image: url('/images/Tennis.jpg')">
+
+<header th:replace="/fragments/navbar"></header>
+
+<section id="loginPage">
+    <form th:method="post" th:action="@{/login}">
+        <fieldset>
+            <legend>Login</legend>
+
+            <label for="username" class="vhide">Username</label>
+            <input id="username" class="username" name="username" type="text" placeholder="Username">
+
+            <label for="password" class="vhide">Password</label>
+            <input id="password" class="password" name="password" type="password" placeholder="Password">
+
+            <p th:if="${badCredentials}" class="error">
+                Invalid username or password!
+            </p>
+
+            <button type="submit" class="login">Login</button>
+
+            <p class="field">
+                <span>If you don't have profile click <a href="/register">here</a></span>
+            </p>
+        </fieldset>
+    </form>
+</section>
+
+<footer th:replace="/fragments/footer"></footer>
+</body>
+</html>
