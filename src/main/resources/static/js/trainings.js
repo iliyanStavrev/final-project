@@ -12,10 +12,13 @@ async function getTrainingDetails() {
     let h1 = document.createElement("h1");
     h1.setAttribute("id", "title");
 
-    if (trainings.length === 0){
-     h1.textContent = "We do not have Trainings for this Sport yet!";
-     main.appendChild(h1);
-     return;
+    if (trainings.length === 0) {
+        let div = document.createElement('div');
+        div.setAttribute('id', 'box-title')
+        h1.textContent = "We do not have Trainings for this Sport yet!";
+        div.appendChild(h1);
+        main.appendChild(div);
+        return;
     }
 
     h1.textContent = "All Trainings!";

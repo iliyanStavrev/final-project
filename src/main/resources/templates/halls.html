@@ -28,10 +28,20 @@
                 <p th:text="|Next training is on *{availableOn}|">
                     Some text
                 </p>
+                <div class="showMore" style="display: none" th:text="
+                |Some info:
+                *{description}|">
+
+                </div>
+                <button>
+                    Show more
+                </button>
+
             </div>
         </section>
     </main>
     <footer th:replace="/fragments/footer"></footer>
+    <script type="text/javascript" src="/js/halls.js"></script>
 </div>
 </body>
 </html>

@@ -13,6 +13,7 @@ public class Hall extends BaseEntity{
     private String address;
     private Integer capacity;
     private LocalDateTime availableOn;
+    private String description;
 
     @Column(nullable = false)
     public String getName() {
@@ -47,5 +48,14 @@ public class Hall extends BaseEntity{
 
     public void setAvailableOn(LocalDateTime availableOn) {
         this.availableOn = availableOn;
+    }
+
+    @Column(columnDefinition = "TEXT")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

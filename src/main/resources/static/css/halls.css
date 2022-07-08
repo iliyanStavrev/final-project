@@ -16,4 +16,19 @@ img {
 .text-wrapper{
     margin-left: 150px;
     margin-top: 33px;
+    font-weight: bolder;
+}
+button {
+    font-size: 21px;
+    color: blueviolet;
+    background-color: #afe9bb;
+    border-radius: 10px;
+}
+button:hover{
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #8f3a9542;
+}
+.showMore {
+    padding-top: 25px;
 }

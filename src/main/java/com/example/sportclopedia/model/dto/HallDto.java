@@ -8,6 +8,7 @@ public class HallDto {
     private String address;
     private Integer capacity;
     private LocalDateTime availableOn;
+    private String description;
 
     public String getName() {
         return name;
@@ -39,5 +40,13 @@ public class HallDto {
 
     public void setAvailableOn(LocalDateTime availableOn) {
         this.availableOn = availableOn;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
