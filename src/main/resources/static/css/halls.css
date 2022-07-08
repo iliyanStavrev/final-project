@@ -1,0 +1,19 @@
+section {
+    background-color: #8f3a9542;
+    font-size: 24px;
+    text-align: center;
+    padding: 33px 0px 33px 250px;
+    margin: 40px 25px 40px 25px;
+    display: flex;
+    flex-direction: column;
+}
+img {
+    max-width: 455px;
+}
+.image{
+    margin: -33px 570px -294px -400px;
+}
+.text-wrapper{
+    margin-left: 150px;
+    margin-top: 33px;
+}
