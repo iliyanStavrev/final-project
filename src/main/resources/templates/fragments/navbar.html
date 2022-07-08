@@ -6,7 +6,7 @@
     <ul>
         <!--All user-->
         <li sec:authorize="isAuthenticated()"><a href="/sports">Sports</a></li>
-        <li><a href="/halls">Halls</a></li>
+        <li><a href="/halls" sec:authorize="isAuthenticated()">Halls</a></li>
         <!--Only guest-->
         <li class="guest" sec:authorize="!isAuthenticated()">
             <a href="/login">Login</a>
