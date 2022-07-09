@@ -6,6 +6,9 @@ section {
     margin: 40px 25px 40px 25px;
     display: flex;
     flex-direction: column;
+    border-style: groove;
+    border-color: #afe9bbc4;
+    border-radius: 15px;
 }
 img {
     max-width: 455px;

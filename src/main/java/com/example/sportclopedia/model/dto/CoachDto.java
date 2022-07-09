@@ -1,20 +1,14 @@
-package com.example.sportclopedia.model.entity;
+package com.example.sportclopedia.model.dto;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import java.time.LocalDate;
 
-@Entity(name = "coaches")
-public class Coach extends BaseEntity{
+public class CoachDto {
 
     private String fullName;
     private Integer age;
     private LocalDate coachSince;
     private String phoneNumber;
 
-    @Column(nullable = false)
     public String getFullName() {
         return fullName;
     }
@@ -31,7 +25,6 @@ public class Coach extends BaseEntity{
         this.age = age;
     }
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getCoachSince() {
         return coachSince;
     }

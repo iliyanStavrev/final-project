@@ -1,0 +1,25 @@
+section {
+    background-color: #2ffffbd9;
+    border-style: inset;
+    border-color: #00000082;
+    margin: 20px 717px 20px 25px;;
+    padding: 0px 20px 5px 27px;
+    border-radius: 15px;
+}
+.flex-row {
+    display: inline-flex;
+    margin: 10px 10px 10px 30px;
+    flex-direction: column;
+}
+h2 {
+    text-align: center;
+}
+.text-content {
+    padding: 5px 222px 50px 15px;
+    margin: 0px 50px -100px 5px;
+}
+img{
+    width: 40%;
+    margin: 0px 1px 40px 10px;
+    border-radius: 4px;
+}

@@ -5,15 +5,27 @@
     <meta charset="UTF-8">
     <title>Coaches</title>
     <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/coaches.css"/>
 </head>
 <body style="background-image: url('/images/coaches-background.jpg')">
 <div id="wrapper">
     <header th:replace="/fragments/navbar"></header>
     <main id="main">
-        <section>
-
-        </section>
-
+        <div class="flex-row">
+            <section th:each="c : ${coaches}" th:object="${c}">
+                <div class="text-content">
+                    <h2 th:text="|Full name: *{fullName}|">
+                    </h2>
+                    <h3 th:text="|Age: *{age}|">
+                    </h3>
+                    <h3 th:text="|Coach since: *{coachSince}|">
+                    </h3>
+                    <h3 th:text="|Phone number: *{phoneNumber}|">
+                    </h3>
+                    <img src="/images/coach-vector.jpg" alt="*">
+                </div>
+            </section>
+        </div>
     </main>
     <footer th:replace="/fragments/footer"></footer>
 </div>

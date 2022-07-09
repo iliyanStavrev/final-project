@@ -74,7 +74,9 @@ nav a:hover {
 }
 
 #welcomePage img {
-    width: 40%
+    width: 40%;
+    border-radius: 10px;
+
 }
 
 nav > img {
@@ -116,4 +118,7 @@ nav form{
     margin: -51px;
     margin-left: 375px;
     margin-right: 20px;
+}
+.group-img{
+    margin-bottom: 20px;
 }
