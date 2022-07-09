@@ -2,19 +2,26 @@
      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <img src="/images/basketball-graphic.png" alt="*">
-    <a href="/">Home</a>
+    <a href="/" sec:authorize='!hasRole("ADMIN")'>Home</a>
+    <div sec:authorize='hasRole("ADMIN")' class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Admin</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="trainings/add">Add Training</a>
+            <a href="/halls/add">Add Hall</a>
+            <a href="/coaches/add">Add Coach</a>
+        </div>
+    </div>
     <ul>
-        <!--All user-->
         <li sec:authorize="isAuthenticated()"><a href="/sports">Sports</a></li>
         <li><a href="/halls" sec:authorize="isAuthenticated()">Halls</a></li>
-        <!--Only guest-->
+
         <li class="guest" sec:authorize="!isAuthenticated()">
             <a href="/login">Login</a>
         </li>
         <li class="guest" sec:authorize="!isAuthenticated()">
             <a href="/register">Register</a>
         </li>
-        <!--Only user-->
+
         <li class="user" sec:authorize="isAuthenticated()"><a href="/coaches">Coaches</a></li>
         <li class="user" sec:authorize="isAuthenticated()">
             <form id="logout"
@@ -23,4 +30,5 @@
             </form>
         </li>
     </ul>
+    <script type="text/javascript" src="/js/dropdown.js"></script>
 </nav>

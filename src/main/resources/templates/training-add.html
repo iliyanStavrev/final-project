@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Training</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+</head>
+<body style="background-image: url('/images/add-training.jpg')">
+<header th:replace="/fragments/navbar"></header>
+
+<section id="registerPage">
+    <form class="mx-auto w-25 bg-blur rounded"
+          th:action="@{/trainings/add}" th:method="post"
+          th:object="${addTrainingDto}">
+        <fieldset>
+            <legend>Add training</legend>
+
+            <div class="form-group">
+                <label for="username" class="vhide">Name of the training</label>
+                <input th:field="*{name}"
+                       th:errorclass="is-invalid"
+                       id="username" class="form-control username" name="name" type="text" placeholder="Name">
+                <small class="invalid-feedback text-danger">
+                    Username should be between 2 and 30 symbols!
+                </small>
+            </div>
+
+            <label for="fullName" class="vhide">Full name</label>
+            <input th:field="*{duration}"
+                   th:errorclass="'is-invalid'"
+                   id="fullName" class="form-control fullName" name="duration" type="text" placeholder="Duration">
+
+            <small class="invalid-feedback text-danger">
+                Must be positive number!
+            </small>
+
+            <label for="email" class="vhide">Intensity</label>
+            <input th:field="*{intensity}"
+                   th:errorclass="'is-invalid'"
+                   id="email" class="form-control email" name="intensity" type="text" placeholder="Intensity">
+<!--            <small class="invalid-feedback text-danger">-->
+<!--                Email error!-->
+<!--            </small>-->
+
+            <label for="password" class="vhide">Date</label>
+            <input th:field="*{startedOn}"
+                   th:errorclass="'is-invalid'"
+                   id="password" class="form-control password" name="startedOn" type="password" placeholder="Started on">
+
+            <small class="invalid-feedback text-danger">
+                Date should be past or present!
+            </small>
+
+            <label for="conf-pass" class="vhide">Coach</label>
+            <input id="conf-pass" class="form-control conf-pass" name="coach" type="password" placeholder="Coach">
+            <small class="errors invalid-feedback">
+               Coach error
+            </small>
+
+            <label for="sport" class="vhide">Sport</label>
+            <input id="sport" class="form-control conf-pass" name="coach" type="password" placeholder="Sport">
+            <small class="errors invalid-feedback">
+                Sport error
+            </small>
+
+            <label for="hall" class="vhide">Hall</label>
+            <input id="hall" class="form-control conf-pass" name="hall" type="password" placeholder="Hall">
+            <small class="errors invalid-feedback">
+                Hall error
+            </small>
+
+            <button type="submit" class="register">Add Training</button>
+
+        </fieldset>
+    </form>
+</section>
+
+<footer th:replace="/fragments/footer"></footer>
+</body>
+</html>
