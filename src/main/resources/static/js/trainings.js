@@ -1,3 +1,4 @@
+
 window.onload = getTrainingDetails;
 
 async function getTrainingDetails() {
@@ -8,7 +9,7 @@ async function getTrainingDetails() {
     let response = await fetch(url);
     let trainings = await response.json();
 
-    let main = document.getElementById("main");
+    let main = document.querySelector(".main");
     let h1 = document.createElement("h1");
     h1.setAttribute("id", "title");
 
@@ -42,15 +43,39 @@ async function getTrainingDetails() {
                 <h3>Coach: ${training.coach}</h3>
                 <h3>Hall: ${training.hall}</h3>
                 <h3>Started on: ${training.startedOn}</h3>
-              <div class="actionBtn"> 
-                <a href="/">Reserve</a>
+              <div class="actionBtn buttons"> 
+                <a href="/trainings/reserve/${training.id}">Reserve</a>
               </div>
             </div>  
         </div>
     </div>
     `
         main.appendChild(section);
+
+        if (main.querySelector('#hasRole') !== null){
+            let a = document.createElement('a');
+            a.textContent = 'Delete';
+            a.setAttribute("class", "deleteBtn")
+            a.setAttribute('href', "/trainings/delete/" + training.id);
+            let divBtn = document.querySelector(".buttons");
+            divBtn.appendChild(a);
+            divBtn.classList.remove("buttons");
+        }
     })
+
+    Array.from(document.querySelectorAll(".deleteBtn"))
+        .forEach(e => e.addEventListener('click', onDelete));
+
+    function onDelete(e){
+
+        e.preventDefault();
+        let confirmed =  confirm("Are you sure you want to delete this item?");
+
+        if (confirmed){
+            window.location.href = e.target.getAttribute("href");
+        }
+
+    }
 }
 
 

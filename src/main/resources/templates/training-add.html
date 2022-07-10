@@ -1,4 +1,4 @@
-<!doctype html>
+<!Doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -28,7 +28,7 @@
                        th:errorclass="is-invalid"
                        id="username" class="form-control username" name="name" type="text" placeholder="Name">
                 <small class="invalid-feedback text-danger">
-                    Username should be between 2 and 30 symbols!
+                    Name should be between 2 and 30 symbols!
                 </small>
             </div>
 
@@ -41,38 +41,66 @@
                 Must be positive number!
             </small>
 
-            <label for="email" class="vhide">Intensity</label>
-            <input th:field="*{intensity}"
-                   th:errorclass="'is-invalid'"
-                   id="email" class="form-control email" name="intensity" type="text" placeholder="Intensity">
-<!--            <small class="invalid-feedback text-danger">-->
-<!--                Email error!-->
-<!--            </small>-->
+            <label for="intensity" class="vhide">Intensity</label>
+<!--            <input th:field="*{intensity}"-->
+<!--                   th:errorclass="'is-invalid'"-->
+<!--                   id="intensity" class="form-control" name="intensity" type="text" placeholder="Intensity">-->
 
-            <label for="password" class="vhide">Date</label>
+            <select th:field="*{intensity}"
+                    th:errorclass="is-invalid"
+                    class="browser-default custom-select" id="intensity" name="intensity">
+                <option value="select">
+                    Select intensity level
+                </option>
+                <option th:each="i : ${T(com.example.sportclopedia.model.enums.IntensityLevelEnum).values()}"
+                        th:value="${i}" th:text="${i}">
+                </option>
+            </select>
+
+
+            <label for="startedOn" class="vhide">Date</label>
             <input th:field="*{startedOn}"
                    th:errorclass="'is-invalid'"
-                   id="password" class="form-control password" name="startedOn" type="password" placeholder="Started on">
+                   id="startedOn"
+                   class="date" name="startedOn" type="datetime-local" placeholder="Started on">
+            <small class="invalid-feedback text-danger">
+                Date should be present or future!
+            </small>
+
+            <label for="coach" class="vhide">Coach</label>
+            <select th:field="*{coach}"
+                    th:errorclass="is-invalid"
+                    class="browser-default custom-select" id="coach" name="coach">
+                <option value="select">
+                    Select coach
+                </option>
+                <option th:each="c : ${coaches}"
+                        th:value="${c}" th:text="${c}">
+                </option>
+            </select>
 
             <small class="invalid-feedback text-danger">
-                Date should be past or present!
+                Coach error
             </small>
 
-            <label for="conf-pass" class="vhide">Coach</label>
-            <input id="conf-pass" class="form-control conf-pass" name="coach" type="password" placeholder="Coach">
-            <small class="errors invalid-feedback">
-               Coach error
-            </small>
+<!--            <label for="coach" class="vhide">Coach</label>-->
+<!--            <input th:field="*{coach}"-->
+<!--                   th:errorclass="'is-invalid'"-->
+<!--                    id="coach" class="form-control" name="coach" type="text"  placeholder="Coach">-->
 
             <label for="sport" class="vhide">Sport</label>
-            <input id="sport" class="form-control conf-pass" name="coach" type="password" placeholder="Sport">
-            <small class="errors invalid-feedback">
+            <input th:field="*{sport}"
+                   th:errorclass="'is-invalid'"
+                    id="sport" class="form-control field" name="sport" type="text" placeholder="Sport">
+            <small class="invalid-feedback text-danger">
                 Sport error
             </small>
 
             <label for="hall" class="vhide">Hall</label>
-            <input id="hall" class="form-control conf-pass" name="hall" type="password" placeholder="Hall">
-            <small class="errors invalid-feedback">
+            <input th:field="*{hall}"
+                   th:errorclass="'is-invalid'"
+                    id="hall" class="form-control" name="hall" type="text" placeholder="Hall">
+            <small class="invalid-feedback text-danger">
                 Hall error
             </small>
 

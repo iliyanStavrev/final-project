@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,13 +12,16 @@
 
     <title>Sports</title>
 </head>
-<body style="background-image: url('/images/group-athletes.jpg')">>
+<body style="background-image: url('/images/group-athletes.jpg')">
 <header th:replace="/fragments/navbar"></header>
-<main id="main">
+<main class="main">
+<div id="hasRole" sec:authorize='hasRole("ADMIN")' style="display: none">
+</div>
 
 </main>
 
 <footer th:replace="/fragments/footer"></footer>
-<script type="text/javascript" src="/js/trainings.js"></script>
+<script type="module" src="/js/trainings.js"></script>
+<script type="module" src="/js/onDelete.js"></script>
 </body>
 </html>

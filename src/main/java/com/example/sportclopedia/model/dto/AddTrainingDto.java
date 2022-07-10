@@ -1,6 +1,7 @@
 package com.example.sportclopedia.model.dto;
 
 import com.example.sportclopedia.model.enums.IntensityLevelEnum;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
@@ -9,7 +10,7 @@ public class AddTrainingDto {
 
     private String name;
     private Integer duration;
-    private IntensityLevelEnum intensity;
+    private String intensity;
     private LocalDateTime startedOn;
     private String coach;
     private String sport;
@@ -34,16 +35,17 @@ public class AddTrainingDto {
         this.duration = duration;
     }
 
-    @NotBlank
-    public IntensityLevelEnum getIntensity() {
+    @NotNull
+    public String getIntensity() {
         return intensity;
     }
 
-    public void setIntensity(IntensityLevelEnum intensity) {
+    public void setIntensity(String intensity) {
         this.intensity = intensity;
     }
 
-    @PastOrPresent
+    @FutureOrPresent
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     public LocalDateTime getStartedOn() {
         return startedOn;
     }
@@ -53,6 +55,7 @@ public class AddTrainingDto {
     }
 
     @NotBlank
+    @Size(min = 2,max = 40)
     public String getCoach() {
         return coach;
     }
@@ -62,6 +65,7 @@ public class AddTrainingDto {
     }
 
     @NotBlank
+    @Size(min = 2,max = 40)
     public String getSport() {
         return sport;
     }
@@ -71,6 +75,7 @@ public class AddTrainingDto {
     }
 
     @NotBlank
+    @Size(min = 2,max = 40)
     public String getHall() {
         return hall;
     }

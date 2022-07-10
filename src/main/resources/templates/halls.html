@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Halls</title>
@@ -16,6 +17,15 @@
                 <img th:src="'/images/' + *{name} +  '.jpg'">
             </div>
             <div class="text-wrapper">
+                <div sec:authorize='hasRole("ADMIN")'>
+                    <button >
+                        <a th:href="@{halls/delete/{id}(id=*{id})}"
+                        class="deleteBtn">
+                            Delete
+                        </a>
+                    </button>
+                </div>
+
                 <h2 th:text="*{name}">
 
                 </h2>
@@ -42,6 +52,7 @@
     </main>
     <footer th:replace="/fragments/footer"></footer>
     <script type="text/javascript" src="/js/halls.js"></script>
+    <script type="text/javascript" src="/js/onDelete.js"></script>
 </div>
 </body>
 </html>

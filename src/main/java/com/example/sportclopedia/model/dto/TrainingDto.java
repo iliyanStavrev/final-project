@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 public class TrainingDto {
 
+    private Long id;
     private String name;
     private Integer duration;
     private IntensityLevelEnum intensity;
@@ -14,6 +15,14 @@ public class TrainingDto {
     private String coach;
     private String sport;
     private String hall;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

@@ -1,0 +1,78 @@
+<!Doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Hall</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+</head>
+<body style="background-image: url('/images/hall-add.jpg')">
+<header th:replace="/fragments/navbar"></header>
+
+<section id="registerPage">
+    <form class="mx-auto w-25 bg-blur rounded"
+          th:action="@{/halls/add}" th:method="post"
+          th:object="${addHallDto}">
+        <fieldset id="add-hall">
+            <legend>Add Hall</legend>
+
+            <div class="form-group">
+                <label for="name" class="vhide">Name of the Hall</label>
+                <input th:field="*{name}"
+                       th:errorclass="is-invalid"
+                       id="name" class="form-control name" name="name" type="text" placeholder="Name">
+                <small class="invalid-feedback text-danger">
+                    Name should be between 2 and 30 symbols!
+                </small>
+            </div>
+
+            <label for="address" class="vhide">Address</label>
+            <input th:field="*{address}"
+                   th:errorclass="'is-invalid'"
+                   id="address" class="form-control address" name="address" type="text" placeholder="Address">
+
+            <small class="invalid-feedback text-danger">
+                Address should be more than 5 symbols!
+            </small>
+
+            <label for="capacity" class="vhide">Capacity</label>
+            <input th:field="*{capacity}"
+                   th:errorclass="'is-invalid'"
+                   id="capacity"  name="capacity" type="number" placeholder="Capacity">
+            <small class="invalid-feedback text-danger">
+                Capacity must be positive number!
+            </small>
+
+            <label for="availableOn" class="vhide">Available on</label>
+            <input th:field="*{availableOn}"
+                   th:errorclass="'is-invalid'"
+                   class="date"
+                   id="availableOn"  name="availableOn" type="datetime-local" placeholder="Available on">
+            <small class="invalid-feedback text-danger">
+                Date should be present or future!
+            </small>
+
+            <label for="description" class="vhide">Description</label>
+            <textarea th:field="*{description}"
+                   th:errorclass="'is-invalid'"
+                   id="description"  name="description" type="text" placeholder="Description">
+            </textarea>
+            <small class="invalid-feedback text-danger">
+                Description should be more than 20 symbols!
+            </small>
+
+            <button type="submit" class="register">Add Hall</button>
+
+        </fieldset>
+    </form>
+</section>
+
+<footer th:replace="/fragments/footer"></footer>
+</body>
+</html>

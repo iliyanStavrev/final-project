@@ -11,4 +11,8 @@ public interface CoachService {
     Coach findById(Long id);
 
     List<CoachDto> getAllCoaches();
+
+    Coach findByName(String coach);
+
+    List<String> getAllCoachesNames();
 }

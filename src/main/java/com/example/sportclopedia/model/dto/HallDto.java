@@ -4,11 +4,20 @@ import java.time.LocalDateTime;
 
 public class HallDto {
 
+    private Long id;
     private String name;
     private String address;
     private Integer capacity;
     private LocalDateTime availableOn;
     private String description;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

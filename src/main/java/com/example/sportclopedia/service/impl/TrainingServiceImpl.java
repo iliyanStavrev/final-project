@@ -1,10 +1,12 @@
 package com.example.sportclopedia.service.impl;
 
+import com.example.sportclopedia.model.dto.AddTrainingDto;
 import com.example.sportclopedia.model.dto.TrainingDto;
 import com.example.sportclopedia.model.entity.Training;
 import com.example.sportclopedia.model.enums.IntensityLevelEnum;
 import com.example.sportclopedia.repository.TrainingRepository;
 import com.example.sportclopedia.service.CoachService;
+import com.example.sportclopedia.service.HallService;
 import com.example.sportclopedia.service.SportService;
 import com.example.sportclopedia.service.TrainingService;
 import org.modelmapper.ModelMapper;
@@ -20,12 +22,14 @@ public class TrainingServiceImpl implements TrainingService {
     private final TrainingRepository trainingRepository;
     private final SportService sportService;
     private final CoachService coachService;
+    private final HallService hallService;
     private final ModelMapper modelMapper;
 
-    public TrainingServiceImpl(TrainingRepository trainingRepository, SportService sportService, CoachService coachService, ModelMapper modelMapper) {
+    public TrainingServiceImpl(TrainingRepository trainingRepository, SportService sportService, CoachService coachService, HallService hallService, ModelMapper modelMapper) {
         this.trainingRepository = trainingRepository;
         this.sportService = sportService;
         this.coachService = coachService;
+        this.hallService = hallService;
         this.modelMapper = modelMapper;
     }
 
@@ -76,5 +80,19 @@ public class TrainingServiceImpl implements TrainingService {
                 })
                 .collect(Collectors.toList());
 
+    }
+
+    @Override
+    public void addTraining(AddTrainingDto addTrainingDto) {
+
+        Training training = modelMapper
+                .map(addTrainingDto, Training.class);
+
+        training.setIntensity(IntensityLevelEnum.valueOf(addTrainingDto.getIntensity()));
+        training.setSport(sportService.findByName(addTrainingDto.getSport()));
+        training.setHall(hallService.findByName(addTrainingDto.getHall()));
+        training.setCoach(coachService.findByName(addTrainingDto.getCoach()));
+
+        trainingRepository.save(training);
     }
 }

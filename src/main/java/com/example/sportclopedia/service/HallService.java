@@ -1,6 +1,7 @@
 package com.example.sportclopedia.service;
 
 
+import com.example.sportclopedia.model.dto.AddHallDto;
 import com.example.sportclopedia.model.dto.HallDto;
 import com.example.sportclopedia.model.entity.Hall;
 
@@ -13,4 +14,7 @@ public interface HallService {
     Hall findByName(String sila);
 
     List<HallDto> getAllHalls();
+
+    void addHall(AddHallDto addHallDto);
+
 }

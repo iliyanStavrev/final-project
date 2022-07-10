@@ -1,5 +1,6 @@
 package com.example.sportclopedia.service.impl;
 
+import com.example.sportclopedia.model.dto.AddHallDto;
 import com.example.sportclopedia.model.dto.HallDto;
 import com.example.sportclopedia.model.entity.Hall;
 import com.example.sportclopedia.repository.HallRepository;
@@ -67,5 +68,13 @@ public class HallServiceImpl implements HallService {
                 .map(hall -> modelMapper
                         .map(hall, HallDto.class))
                 .toList();
+    }
+
+    @Override
+    public void addHall(AddHallDto addHallDto) {
+
+        Hall hall = modelMapper
+                .map(addHallDto, Hall.class);
+        hallRepository.save(hall);
     }
 }

@@ -64,4 +64,19 @@ public class CoachServiceImpl implements CoachService {
                 })
                 .toList();
     }
+
+    @Override
+    public Coach findByName(String coach) {
+        return coachRepository
+                .findByFullName(coach);
+    }
+
+    @Override
+    public List<String> getAllCoachesNames() {
+
+        return getAllCoaches()
+                .stream()
+                .map(c -> String.format("%s", c.getFullName()))
+                .toList();
+    }
 }
