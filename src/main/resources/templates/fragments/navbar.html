@@ -1,7 +1,10 @@
 <nav xmlns:th="http://www.thymeleaf.org"
      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <img src="/images/basketball-graphic.png" alt="*">
+
+    <a href="/">
+        <img src="/images/basketball-graphic.png" alt="*">
+    </a>
     <a href="/" sec:authorize='!hasRole("ADMIN")'>Home</a>
     <div sec:authorize='hasRole("ADMIN")' class="dropdown">
         <button onclick="myFunction()" class="dropbtn">Admin</button>
@@ -12,6 +15,7 @@
         </div>
     </div>
     <ul>
+        <li sec:authorize="isAuthenticated()"><a href="/trainings/all">Trainings</a></li>
         <li sec:authorize="isAuthenticated()"><a href="/sports">Sports</a></li>
         <li><a href="/halls" sec:authorize="isAuthenticated()">Halls</a></li>
 

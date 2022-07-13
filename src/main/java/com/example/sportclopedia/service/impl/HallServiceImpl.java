@@ -77,4 +77,10 @@ public class HallServiceImpl implements HallService {
                 .map(addHallDto, Hall.class);
         hallRepository.save(hall);
     }
+
+    @Override
+    public void deleteHall(Long id) {
+        hallRepository
+                .deleteById(id);
+    }
 }

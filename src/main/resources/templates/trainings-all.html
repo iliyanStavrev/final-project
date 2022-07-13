@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Trainings</title>
+    <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/trainings.css"/>
+</head>
+<body id="slideShow">
+<div id="wrapper">
+    <header th:replace="/fragments/navbar"></header>
+    <main id="main">
+<!--            <div class="image">-->
+<!--                <img th:src="'/images/' + *{name} +  '.jpg'"-->
+<!--                     onerror="this.src = '/images/halls-background.jpg'">-->
+<!--            </div>-->
+            <div >
+                <div class="text-wrapper" th:each="t : ${trainings}" th:object="${t}">
+                    <div
+                         th:text="|* *{name} - *{duration} minutes - coach *{coachFullName}|">
+                    </div>
+                    <a th:href="@{/trainings/details/{id}(id = *{sportId})}">
+                        <img th:src="'/images/' + *{sportName}  + '-vector.jpg'" alt="***no image">
+                    </a>
+
+                </div>
+            </div>
+
+    </main>
+    <footer th:replace="/fragments/footer"></footer>
+    <script type="text/javascript" src="/js/halls.js"></script>
+    <script type="text/javascript" src="/js/onDelete.js"></script>
+</div>
+</body>
+</html>

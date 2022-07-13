@@ -23,7 +23,7 @@ async function getSports(){
                             <p class="description">${sport.description}</p>
                         </div>
                         <div class="btn-group">
-                            <a href=details/${sport.id} id="details">Book an training</a>
+                            <a href= /trainings/details/${sport.id} id="details">Book an training</a>
                         </div>
                     </div>
                 </div>`;

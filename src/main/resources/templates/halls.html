@@ -14,7 +14,8 @@
     <main id="main">
         <section th:each="h : ${halls}" th:object="${h}">
             <div class="image">
-                <img th:src="'/images/' + *{name} +  '.jpg'">
+                <img th:src="'/images/' + *{name} +  '.jpg'"
+                onerror="this.src = '/images/halls-background.jpg'">
             </div>
             <div class="text-wrapper">
                 <div sec:authorize='hasRole("ADMIN")'>

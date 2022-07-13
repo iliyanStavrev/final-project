@@ -12,9 +12,10 @@ public class TrainingDto {
     private Integer duration;
     private IntensityLevelEnum intensity;
     private LocalDateTime startedOn;
-    private String coach;
-    private String sport;
+    private String coachFullName;
+    private String sportName;
     private String hall;
+    private Long sportId;
 
     public Long getId() {
         return id;
@@ -56,20 +57,20 @@ public class TrainingDto {
         this.startedOn = startedOn;
     }
 
-    public String getCoach() {
-        return coach;
+    public String getCoachFullName() {
+        return coachFullName;
     }
 
-    public void setCoach(String coach) {
-        this.coach = coach;
+    public void setCoachFullName(String coachFullName) {
+        this.coachFullName = coachFullName;
     }
 
-    public String getSport() {
-        return sport;
+    public String getSportName() {
+        return sportName;
     }
 
-    public void setSport(String sport) {
-        this.sport = sport;
+    public void setSportName(String sportName) {
+        this.sportName = sportName;
     }
 
     public String getHall() {
@@ -78,5 +79,13 @@ public class TrainingDto {
 
     public void setHall(String hall) {
         this.hall = hall;
+    }
+
+    public Long getSportId() {
+        return sportId;
+    }
+
+    public void setSportId(Long sportId) {
+        this.sportId = sportId;
     }
 }

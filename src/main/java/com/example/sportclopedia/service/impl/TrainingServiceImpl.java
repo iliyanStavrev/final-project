@@ -71,8 +71,8 @@ public class TrainingServiceImpl implements TrainingService {
                 .map(training -> {
                     TrainingDto trainingDto = modelMapper
                             .map(training,TrainingDto.class);
-                    trainingDto.setCoach(training.getCoach().getFullName());
-                    trainingDto.setSport(training.getSport().getName());
+                    trainingDto.setCoachFullName(training.getCoach().getFullName());
+                    trainingDto.setSportName(training.getSport().getName());
                     trainingDto.setHall(training.getHall() == null
                             ? "There is no Hall yet!"
                             : training.getHall().getName());
@@ -94,5 +94,22 @@ public class TrainingServiceImpl implements TrainingService {
         training.setCoach(coachService.findByName(addTrainingDto.getCoach()));
 
         trainingRepository.save(training);
+    }
+
+    @Override
+    public void deleteTraining(Long id) {
+        trainingRepository
+                .deleteById(id);
+    }
+
+    @Override
+    public List<TrainingDto> getAllTrainings() {
+
+        return trainingRepository
+                .findAll()
+                .stream()
+                .map(t -> modelMapper
+                        .map(t, TrainingDto.class))
+                .toList();
     }
 }

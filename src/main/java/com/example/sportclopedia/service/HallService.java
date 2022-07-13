@@ -17,4 +17,6 @@ public interface HallService {
 
     void addHall(AddHallDto addHallDto);
 
+    void deleteHall(Long id);
+
 }

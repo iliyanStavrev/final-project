@@ -30,10 +30,10 @@ public class TrainingController {
         return new AddTrainingDto();
     }
 
-    @GetMapping("/details/{id}")
+    @GetMapping("/trainings/details/{id}")
     public String detailsPage(@PathVariable String id){
 
-        return "trainings";
+        return "trainings-by-sports";
     }
 
     @GetMapping("/trainings/add")
@@ -60,6 +60,20 @@ public class TrainingController {
 
         trainingService.addTraining(addTrainingDto);
 
-        return "redirect:/sports";
+        return "redirect:/trainings/all";
+    }
+    @GetMapping("/trainings/delete/{id}")
+    public String deleteHall(@PathVariable Long id){
+
+        trainingService.deleteTraining(id);
+
+        return "redirect:/trainings/details/" + id;
+    }
+    @GetMapping("/trainings/all")
+    public String trainingsPage(Model model){
+
+        model.addAttribute("trainings", trainingService.getAllTrainings());
+
+        return "trainings-all";
     }
 }

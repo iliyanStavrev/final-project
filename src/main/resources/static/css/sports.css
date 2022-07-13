@@ -1,3 +1,4 @@
+
 .card-box {
     box-shadow: 0px 0px 30px 0px;
     padding: 20px;
@@ -43,7 +44,7 @@
 }
 
 .btn-group > a:before {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 16px;
     font-weight: bold;
     font-family: 'Lato';
@@ -58,7 +59,7 @@
     transition: 500ms;
 }
 
-#sportPage h1{
+#sportPage h1 {
     color: white;
     text-align: center;
     margin-top: 30px;
@@ -104,7 +105,7 @@
     margin: 0 0.5em 1em 0;
 }
 
-#search > input[type=text]::-webkit-input-placeholder{
+#search > input[type=text]::-webkit-input-placeholder {
     color: #343b44;
     line-height: 1.2;
     -webkit-transition: all 0.2s ease;
@@ -147,7 +148,7 @@ input[type=text]:hover {
     margin-top: 20px;
 }
 
-.search-result .no-result{
+.search-result .no-result {
     margin: 1em auto;
     padding: 2em;
     width: 25em;
@@ -195,7 +196,7 @@ input[type=text]:hover {
     text-shadow: 5px 2px black;
 }
 
-.card-box .name{
+.card-box .name {
     text-align: center;
     font-size: 44px;
 
@@ -204,6 +205,7 @@ input[type=text]:hover {
 #details {
     text-align: center;
 }
+
 h1 {
     color: #8220dd;
     font-size: 55px;
@@ -212,6 +214,7 @@ h1 {
     text-shadow: 3px 0px #45a29e;
     text-align: center;
 }
+
 .description {
     font-size: 19px;
 }

@@ -4,10 +4,19 @@ import java.time.LocalDate;
 
 public class CoachDto {
 
+    private Long id;
     private String fullName;
     private Integer age;
     private LocalDate coachSince;
     private String phoneNumber;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFullName() {
         return fullName;

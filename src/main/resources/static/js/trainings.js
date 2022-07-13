@@ -3,7 +3,7 @@ window.onload = getTrainingDetails;
 
 async function getTrainingDetails() {
 
-    let id = window.location.pathname.split("/")[2];
+    let id = window.location.pathname.split("/")[3];
 
     let url = `http://localhost:8080/sports/details/${id}`;
     let response = await fetch(url);
@@ -22,7 +22,7 @@ async function getTrainingDetails() {
         return;
     }
 
-    h1.textContent = "All Trainings!";
+    h1.textContent = "All Trainings for " + trainings[0].sportName + "!";
     main.appendChild(h1);
 
     trainings.forEach(training => {
@@ -31,7 +31,7 @@ async function getTrainingDetails() {
         section.innerHTML = `
      <div class="wrapper">
         <div class="trainingCover">
-          <img src="/images/${training.name.split(" ").join("")}.jpg" alt="*">
+          <img src="/images/${training.name.split(" ").join("")}.jpg" alt="No image">
         </div>
         <div class="trainingInfo">
             <div class="trainingText">
@@ -39,8 +39,8 @@ async function getTrainingDetails() {
                 <h1>Training: ${training.name}</h1>
                 <h3>Duration: ${training.duration} minutes</h3>
                 <h3>Intesity: ${training.intensity}</h3>
-                <h3>Sport: ${training.sport}</h3>
-                <h3>Coach: ${training.coach}</h3>
+                <h3>Sport: ${training.sportName}</h3>
+                <h3>Coach: ${training.coachFullName}</h3>
                 <h3>Hall: ${training.hall}</h3>
                 <h3>Started on: ${training.startedOn}</h3>
               <div class="actionBtn buttons"> 
@@ -60,6 +60,9 @@ async function getTrainingDetails() {
             let divBtn = document.querySelector(".buttons");
             divBtn.appendChild(a);
             divBtn.classList.remove("buttons");
+        }
+        function sportsName(){
+            return training.sport;
         }
     })
 

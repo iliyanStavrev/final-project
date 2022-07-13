@@ -3,7 +3,7 @@ section {
     border-style: inset;
     border-color: #00000082;
     margin: 20px 717px 20px 25px;;
-    padding: 0px 20px 5px 27px;
+    padding-left: 10px;
     border-radius: 15px;
 }
 .flex-row {
@@ -22,4 +22,27 @@ img{
     width: 40%;
     margin: 0px 1px 40px 10px;
     border-radius: 4px;
+}
+button {
+    font-size: 21px;
+    color: #afe9bb;
+    background-color: #d72be2cc;
+    border-radius: 10px;
+
+}
+button:hover{
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #8f3a9542;
+}
+#divAdmin {
+    margin-left: 70%;
+    margin-bottom: 5px;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+footer {
+    margin-top: 7px;
 }

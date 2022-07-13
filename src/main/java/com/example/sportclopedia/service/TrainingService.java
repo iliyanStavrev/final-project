@@ -14,4 +14,7 @@ public interface TrainingService {
 
     void addTraining(AddTrainingDto addTrainingDto);
 
+    void deleteTraining(Long id);
+
+    List<TrainingDto> getAllTrainings();
 }
