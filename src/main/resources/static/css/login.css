@@ -35,6 +35,7 @@ input, input + label > i {
     width: 100%;
     color: white;
     transition: all 0.3s ease;
+    padding: 7px;
 }
 
 input[type=text], input[type=password] {
@@ -119,4 +120,7 @@ p{
 }
 small{
     margin-bottom: 20px
+}
+#age {
+    margin-bottom: 17px;
 }

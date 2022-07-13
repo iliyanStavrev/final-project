@@ -1,5 +1,7 @@
 package com.example.sportclopedia.service.impl;
 
+import com.example.sportclopedia.error.ConstraintViolationException;
+import com.example.sportclopedia.model.dto.AddCoachDto;
 import com.example.sportclopedia.model.dto.CoachDto;
 import com.example.sportclopedia.model.entity.Coach;
 import com.example.sportclopedia.repository.CoachRepository;
@@ -78,5 +80,27 @@ public class CoachServiceImpl implements CoachService {
                 .stream()
                 .map(c -> String.format("%s", c.getFullName()))
                 .toList();
+    }
+
+    @Override
+    public void addCoach(AddCoachDto addCoachDto) {
+
+        Coach coach = modelMapper
+                .map(addCoachDto, Coach.class);
+
+        coachRepository.save(coach);
+    }
+
+    @Override
+    public void deleteCoach(Long id) {
+
+        Coach coach = coachRepository
+                .findById(id).orElse(null);
+
+        if (!coach.getTrainings().isEmpty()){
+            throw new ConstraintViolationException(coach.getId(), coach.getFullName());
+        }
+        coachRepository
+                .deleteById(id);
     }
 }

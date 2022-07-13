@@ -1,0 +1,71 @@
+<!Doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Hall</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
+
+</head>
+<body style="background-image: url('/images/hall-add.jpg')">
+<header th:replace="/fragments/navbar"></header>
+
+<section id="registerPage">
+    <form class="mx-auto w-25 bg-blur rounded"
+          th:action="@{/coaches/add}" th:method="post"
+          th:object="${addCoachDto}">
+        <fieldset>
+            <legend>Add Coach</legend>
+
+            <div class="form-group">
+                <label for="name" class="vhide">Name of the Coach</label>
+                <input th:field="*{fullName}"
+                       th:errorclass="is-invalid"
+                       id="name" class="form-control name" name="name" type="text" placeholder="Full name">
+                <small class="invalid-feedback text-danger">
+                    Name should be between 2 and 30 symbols!
+                </small>
+            </div>
+
+            <label for="age" class="vhide">Age</label>
+            <input th:field="*{age}"
+                   th:errorclass="'is-invalid'"
+                   id="age" class="form-control" name="age" type="number" placeholder="Age">
+
+            <small class="invalid-feedback text-danger">
+                Age should be positive number!
+            </small>
+
+
+            <label for="availableOn" class="vhide">Coach since</label>
+            <input th:field="*{coachSince}"
+                   th:errorclass="'is-invalid'"
+                   class="date"
+                   id="availableOn"  name="coachSince" type="date" placeholder="Coach since">
+            <small class="invalid-feedback text-danger">
+                Date should be present or past!
+            </small>
+
+            <label for="phoneNumber" class="vhide">Phone number</label>
+            <input th:field="*{phoneNumber}"
+                      th:errorclass="'is-invalid'"
+                      id="phoneNumber"  name="phoneNumber" type="text" placeholder="Phone number">
+            <small class="invalid-feedback text-danger">
+                Phone number should be between 10 and 15 symbols!
+            </small>
+
+            <button type="submit" class="register">Add Coach</button>
+
+        </fieldset>
+    </form>
+</section>
+
+<footer th:replace="/fragments/footer"></footer>
+</body>
+</html>

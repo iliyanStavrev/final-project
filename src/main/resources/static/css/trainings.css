@@ -173,3 +173,6 @@
 #main{
     margin-bottom: 20px;
 }
+footer{
+    position: fixed;
+}

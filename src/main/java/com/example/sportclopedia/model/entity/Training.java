@@ -51,7 +51,7 @@ public class Training extends BaseEntity{
         this.startedOn = startedOn;
     }
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public Coach getCoach() {
         return coach;
     }

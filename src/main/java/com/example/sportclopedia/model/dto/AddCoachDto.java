@@ -1,24 +1,21 @@
-package com.example.sportclopedia.model.entity;
+package com.example.sportclopedia.model.dto;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.List;
 
-@Entity(name = "coaches")
-public class Coach extends BaseEntity{
+public class AddCoachDto {
 
     private String fullName;
     private Integer age;
     private LocalDate coachSince;
     private String phoneNumber;
-    private List<Training> trainings;
 
-    @Column(nullable = false)
+    @Size(min = 2,max = 30)
+    @NotBlank
     public String getFullName() {
         return fullName;
     }
@@ -27,6 +24,7 @@ public class Coach extends BaseEntity{
         this.fullName = fullName;
     }
 
+    @Positive
     public Integer getAge() {
         return age;
     }
@@ -36,28 +34,22 @@ public class Coach extends BaseEntity{
     }
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @PastOrPresent
     public LocalDate getCoachSince() {
         return coachSince;
     }
 
-    public void setCoachSince(LocalDate coachFrom) {
-        this.coachSince = coachFrom;
+    public void setCoachSince(LocalDate coachSince) {
+        this.coachSince = coachSince;
     }
 
+    @Size(min = 10,max = 15)
+    @NotBlank
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    @OneToMany(mappedBy = "coach")
-    public List<Training> getTrainings() {
-        return trainings;
-    }
-
-    public void setTrainings(List<Training> trainings) {
-        this.trainings = trainings;
     }
 }
