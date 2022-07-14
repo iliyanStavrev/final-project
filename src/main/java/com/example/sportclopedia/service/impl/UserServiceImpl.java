@@ -1,5 +1,6 @@
 package com.example.sportclopedia.service.impl;
 
+import com.example.sportclopedia.error.DuplicateEntryException;
 import com.example.sportclopedia.model.dto.RegisterDto;
 import com.example.sportclopedia.model.entity.User;
 import com.example.sportclopedia.model.entity.UserRole;
@@ -83,6 +84,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerAndLogin(RegisterDto registerDto) {
 
+        User userByUsername = userRepository
+                .findByUsername(registerDto.getUsername())
+                .orElse(null);
+
+        if (userByUsername != null){
+            throw new DuplicateEntryException(registerDto.getUsername());
+        }
+
+        User userByEmail = userRepository
+                .findByEmail(registerDto.getEmail())
+                .orElse(null);
+
+        if (userByEmail != null){
+            throw new DuplicateEntryException(registerDto.getEmail());
+        }
+
         UserRole userRole = new UserRole();
         userRole.setUserRole(UserRoleEnum.USER);
 
@@ -102,7 +119,6 @@ public class UserServiceImpl implements UserService {
                         userDetails.getPassword(),
                         userDetails.getAuthorities()
                 );
-
         SecurityContextHolder
                 .getContext()
                 .setAuthentication(auth);

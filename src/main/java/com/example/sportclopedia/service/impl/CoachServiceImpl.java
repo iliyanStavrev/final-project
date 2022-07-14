@@ -26,7 +26,7 @@ public class CoachServiceImpl implements CoachService {
 
     @Override
     public void initCoach() {
-        if (coachRepository.count() > 1){
+        if (coachRepository.count() > 0){
             return;
         }
         Coach coach = new Coach();

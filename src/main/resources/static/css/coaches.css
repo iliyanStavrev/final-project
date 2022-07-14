@@ -44,5 +44,6 @@ a {
     color: black;
 }
 footer {
+    position: fixed;
     margin-top: 7px;
 }

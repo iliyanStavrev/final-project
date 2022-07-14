@@ -14,7 +14,7 @@ public class User extends BaseEntity{
     private List<UserRole> userRoles;
 
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     public String getUsername() {
         return username;
     }
@@ -57,7 +57,7 @@ public class User extends BaseEntity{
         this.trainings = trainings;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     public List<UserRole> getUserRoles() {
         return userRoles;
     }

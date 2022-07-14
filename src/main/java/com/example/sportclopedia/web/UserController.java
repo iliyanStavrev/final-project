@@ -29,7 +29,6 @@ public class UserController {
     @GetMapping("/login")
     public String loginPage(){
 
-
         return "login";
     }
 
@@ -57,9 +56,6 @@ public class UserController {
             redirectAttributes.addFlashAttribute("notMatch", true);
             return "redirect:/register";
         }
-
-
-
 
         userService.registerAndLogin(registerDto);
 
