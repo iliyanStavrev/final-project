@@ -1,5 +1,6 @@
 package com.example.sportclopedia.service.impl;
 
+import com.example.sportclopedia.error.ConstraintViolationException;
 import com.example.sportclopedia.model.dto.AddHallDto;
 import com.example.sportclopedia.model.dto.HallDto;
 import com.example.sportclopedia.model.entity.Hall;
@@ -80,6 +81,12 @@ public class HallServiceImpl implements HallService {
 
     @Override
     public void deleteHall(Long id) {
+        Hall hall = hallRepository
+                .findById(id).orElse(null);
+        if (!hall.getTrainings().isEmpty()){
+            throw new ConstraintViolationException(hall.getClass().getSimpleName(),
+                    hall.getName());
+        }
         hallRepository
                 .deleteById(id);
     }

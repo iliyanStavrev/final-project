@@ -1,5 +1,7 @@
 package com.example.sportclopedia.service.impl;
 
+import com.example.sportclopedia.error.ConstraintViolationException;
+import com.example.sportclopedia.error.TrainingTimeViolation;
 import com.example.sportclopedia.model.dto.AddTrainingDto;
 import com.example.sportclopedia.model.dto.TrainingDto;
 import com.example.sportclopedia.model.entity.Training;
@@ -97,9 +99,17 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public void deleteTraining(Long id) {
-        trainingRepository
-                .deleteById(id);
+    public Training deleteTraining(Long id) {
+        Training training = trainingRepository
+                .findById(id).orElse(null);
+        if (LocalDateTime.now().isAfter(training.getStartedOn())){
+            trainingRepository
+                    .deleteById(id);
+        }else {
+            throw new TrainingTimeViolation(training.getName(), training.getStartedOn());
+        }
+
+         return training;
     }
 
     @Override

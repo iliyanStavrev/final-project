@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/error.css}"/>
+</head>
+<body>
+<h2>
+    You can not delete <th:block th:text="|${type} ${name}|">Text</th:block>!
+    <br>
+    There are trainings soon and <th:block th:text="|${type} ${name}|">Text</th:block>
+    is part of them!<br><a href="javascript:history.back()">Get back!</a>
+</h2>
+<div>
+<img src="/images/constraint.jpg">
+</div>
+</body>
+</html>

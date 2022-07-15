@@ -1,6 +1,36 @@
 
-body #img {
-    background-image: url("/images/duplicate.jpg");
-    background-color: #005cbf;
-
+body{
+    background-size: 60%;
+    background-color: #9ee3a875;
+}
+section {
+    background-color: #e1e15680;
+    margin-left: 270px;
+    margin-right: 270px;
+    border-radius: 7px;
+    margin-top: 13px;
+}
+h2 {
+    color: #ff4444;
+    text-align: center;
+    font-size: 36px;
+    margin-top: -7px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+   color: #f60328;
+    text-decoration: underline;
+}
+.username{
+    color: black;
+}
+div {
+    margin-left: 29%;
+}
+img{
+    width: 55%;
+    border-radius: 5px;
 }

@@ -4,7 +4,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "halls")
 public class Hall extends BaseEntity{
@@ -14,6 +16,7 @@ public class Hall extends BaseEntity{
     private Integer capacity;
     private LocalDateTime availableOn;
     private String description;
+    private List<Training> trainings;
 
     @Column(nullable = false)
     public String getName() {
@@ -57,5 +60,14 @@ public class Hall extends BaseEntity{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @OneToMany(mappedBy = "hall")
+    public List<Training> getTrainings() {
+        return trainings;
+    }
+
+    public void setTrainings(List<Training> trainings) {
+        this.trainings = trainings;
     }
 }

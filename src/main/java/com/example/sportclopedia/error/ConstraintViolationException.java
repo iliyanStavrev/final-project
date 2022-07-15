@@ -6,20 +6,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 public class ConstraintViolationException extends RuntimeException{
 
-    private Long id;
-    private String fullName;
+    private String type;
+    private String name;
 
-    public ConstraintViolationException(Long id, String fullName){
-        this.id = id;
-        this.fullName = fullName;
+    public ConstraintViolationException(String type, String name){
+        this.type = type;
+        this.name = name;
     }
 
-
-    public Long getId() {
-        return id;
+    public String getType() {
+        return type;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 }

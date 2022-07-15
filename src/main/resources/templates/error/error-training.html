@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error training</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/error.css}"/>
+</head>
+<body>
+<h2>
+    You can not delete training <br><th:block th:text="|${name}, because it
+     should started on ${date}!|">Text</th:block><br>
+    <a href="javascript:history.back()">Get back!</a>
+</h2>
+<div>
+    <img src="/images/training-error.jpg">
+</div>
+</body>
+</html>

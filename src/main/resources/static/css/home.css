@@ -84,9 +84,11 @@ nav a:hover {
 }
 
 nav img {
-    width: 80px;
-    height: 60px;
-    margin: -22px 7px -22px 15px;
+    width: 85px;
+    height: 63px;
+    margin: -22px 7px -23px 15px;
+    border-radius: 7px;
+    opacity: 88%;
 }
 #welcome-message a:hover{
     cursor: pointer;

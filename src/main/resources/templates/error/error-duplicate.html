@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/error.css}"/>
+</head>
+<body style="background-image: url('/images/duplicate1.jpg')">
+<section class="flex-lg-wrap">
+    <h2>
+        I am sorry,
+        <block  th:text="|${name}|" class="username">Text</block>
+        is already taken!<br>
+        You can try another one <a href="/register">here!</a>
+    </h2>
+</section>
+</body>
+</html>

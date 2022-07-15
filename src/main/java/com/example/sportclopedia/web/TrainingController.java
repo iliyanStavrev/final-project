@@ -1,6 +1,7 @@
 package com.example.sportclopedia.web;
 
 import com.example.sportclopedia.model.dto.AddTrainingDto;
+import com.example.sportclopedia.model.entity.Training;
 import com.example.sportclopedia.service.CoachService;
 import com.example.sportclopedia.service.TrainingService;
 import org.springframework.stereotype.Controller;
@@ -65,9 +66,9 @@ public class TrainingController {
     @GetMapping("/trainings/delete/{id}")
     public String deleteHall(@PathVariable Long id){
 
-        trainingService.deleteTraining(id);
+       Training training = trainingService.deleteTraining(id);
 
-        return "redirect:/trainings/details/" + id;
+        return "redirect:/trainings/details/" + training.getSport().getId();
     }
     @GetMapping("/trainings/all")
     public String trainingsPage(Model model){

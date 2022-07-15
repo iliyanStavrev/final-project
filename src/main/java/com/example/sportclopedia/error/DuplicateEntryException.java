@@ -15,4 +15,5 @@ public class DuplicateEntryException extends RuntimeException {
     public String getUsername() {
         return username;
     }
+
 }

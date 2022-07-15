@@ -98,9 +98,12 @@ public class CoachServiceImpl implements CoachService {
                 .findById(id).orElse(null);
 
         if (!coach.getTrainings().isEmpty()){
-            throw new ConstraintViolationException(coach.getId(), coach.getFullName());
+            throw new ConstraintViolationException(coach.getClass().getSimpleName()
+                    , coach.getFullName());
+
+        }else {
+            coachRepository
+                    .deleteById(id);
         }
-        coachRepository
-                .deleteById(id);
     }
 }
