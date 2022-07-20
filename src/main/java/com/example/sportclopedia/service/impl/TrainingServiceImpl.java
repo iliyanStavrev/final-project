@@ -1,17 +1,17 @@
 package com.example.sportclopedia.service.impl;
 
-import com.example.sportclopedia.error.ConstraintViolationException;
 import com.example.sportclopedia.error.TrainingTimeViolation;
 import com.example.sportclopedia.model.dto.AddTrainingDto;
 import com.example.sportclopedia.model.dto.TrainingDto;
 import com.example.sportclopedia.model.entity.Training;
+import com.example.sportclopedia.model.entity.User;
 import com.example.sportclopedia.model.enums.IntensityLevelEnum;
 import com.example.sportclopedia.repository.TrainingRepository;
-import com.example.sportclopedia.service.CoachService;
-import com.example.sportclopedia.service.HallService;
-import com.example.sportclopedia.service.SportService;
-import com.example.sportclopedia.service.TrainingService;
+import com.example.sportclopedia.repository.UserRepository;
+import com.example.sportclopedia.service.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,17 +21,24 @@ import java.util.stream.Collectors;
 
 @Service
 public class TrainingServiceImpl implements TrainingService {
+
     private final TrainingRepository trainingRepository;
     private final SportService sportService;
     private final CoachService coachService;
     private final HallService hallService;
+    private final UserService userService;
+    private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    public TrainingServiceImpl(TrainingRepository trainingRepository, SportService sportService, CoachService coachService, HallService hallService, ModelMapper modelMapper) {
+    public TrainingServiceImpl(TrainingRepository trainingRepository, SportService sportService,
+                               CoachService coachService, HallService hallService,
+                               UserService userService, UserRepository userRepository, ModelMapper modelMapper) {
         this.trainingRepository = trainingRepository;
         this.sportService = sportService;
         this.coachService = coachService;
         this.hallService = hallService;
+        this.userService = userService;
+        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -68,14 +75,14 @@ public class TrainingServiceImpl implements TrainingService {
 
         List<Training> trainings = trainingRepository
                 .findBySport_Name(sportName);
-       return trainings
+        return trainings
                 .stream()
                 .map(training -> {
                     TrainingDto trainingDto = modelMapper
-                            .map(training,TrainingDto.class);
+                            .map(training, TrainingDto.class);
                     trainingDto.setCoachFullName(training.getCoach().getFullName());
                     trainingDto.setSportName(training.getSport().getName());
-                    trainingDto.setHall(training.getHall() == null
+                    trainingDto.setHallName(training.getHall() == null
                             ? "There is no Hall yet!"
                             : training.getHall().getName());
                     return trainingDto;
@@ -102,14 +109,14 @@ public class TrainingServiceImpl implements TrainingService {
     public Training deleteTraining(Long id) {
         Training training = trainingRepository
                 .findById(id).orElse(null);
-        if (LocalDateTime.now().isAfter(training.getStartedOn())){
+        if (LocalDateTime.now().isAfter(training.getStartedOn())) {
             trainingRepository
                     .deleteById(id);
-        }else {
+        } else {
             throw new TrainingTimeViolation(training.getName(), training.getStartedOn());
         }
 
-         return training;
+        return training;
     }
 
     @Override
@@ -121,5 +128,52 @@ public class TrainingServiceImpl implements TrainingService {
                 .map(t -> modelMapper
                         .map(t, TrainingDto.class))
                 .toList();
+    }
+
+    @Override
+    public boolean reserveTraining(Long id) {
+
+        User user = getUser();
+        Training training = trainingRepository
+                .findById(id).orElse(null);
+        List<Training> trainings = user.getTrainings();
+
+        if (!trainings.contains(training)) {
+            trainings.add(training);
+            user.setTrainings(trainings);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
+    private User getUser() {
+        Object principal = SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        String username = ((UserDetails) principal).getUsername();
+        return userService.findByUsername(username);
+    }
+
+    @Override
+    public List<TrainingDto> getAllUserTrainings() {
+
+        User user = getUser();
+
+        return user.getTrainings()
+                .stream()
+                .map(t -> modelMapper
+                        .map(t, TrainingDto.class))
+                .toList();
+    }
+
+    @Override
+    public void removeTrainingFromUser(Long id) {
+
+        User user = getUser();
+        user.getTrainings().remove(trainingRepository.findById(id).orElse(null));
+        userRepository.save(user);
     }
 }

@@ -7,17 +7,27 @@
     </a>
     <a href="/" sec:authorize='!hasRole("ADMIN")'>Home</a>
     <div sec:authorize='hasRole("ADMIN")' class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Admin</button>
-        <div id="myDropdown" class="dropdown-content">
+        <button onclick="dropDownAdmin()" id="admin" class="dropbtn">Admin</button>
+        <div class="dropdown-content myDropdown">
             <a href="/trainings/add">Add Training</a>
             <a href="/halls/add">Add Hall</a>
             <a href="/coaches/add">Add Coach</a>
         </div>
     </div>
+    <div sec:authorize='isAuthenticated()' class="trainings-dropdown">
+        <button onclick="dropDownTrainings()" id="trainings" class="dropbtn trainings">Trainings</button>
+        <div  class="dropdown-content-trainings myDropdown">
+            <a href="/trainings/all">All Trainings</a>
+            <a href="/trainings/user">My Trainings</a>
+            <a href="/sports">Trainings by Sport</a>
+        </div>
+    </div>
     <ul>
-        <li sec:authorize="isAuthenticated()"><a href="/trainings/all">Trainings</a></li>
-        <li sec:authorize="isAuthenticated()"><a href="/sports">Sports</a></li>
+<!--        <li sec:authorize="isAuthenticated()"><a href="/trainings/all">Trainings</a></li>-->
+<!--        <li sec:authorize="isAuthenticated()"><a href="/trainings/user">My Trainings</a></li>-->
+<!--        <li sec:authorize="isAuthenticated()"><a href="/sports">Sports</a></li>-->
         <li><a href="/halls" sec:authorize="isAuthenticated()">Halls</a></li>
+        <li class="user" sec:authorize="isAuthenticated()"><a href="/coaches">Coaches</a></li>
 
         <li class="guest" sec:authorize="!isAuthenticated()">
             <a href="/login">Login</a>
@@ -25,8 +35,6 @@
         <li class="guest" sec:authorize="!isAuthenticated()">
             <a href="/register">Register</a>
         </li>
-
-        <li class="user" sec:authorize="isAuthenticated()"><a href="/coaches">Coaches</a></li>
         <li class="user" sec:authorize="isAuthenticated()">
             <form id="logout"
                   th:action="@{/logout}" th:method="post">

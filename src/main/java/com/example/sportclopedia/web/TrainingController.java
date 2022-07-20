@@ -74,7 +74,36 @@ public class TrainingController {
     public String trainingsPage(Model model){
 
         model.addAttribute("trainings", trainingService.getAllTrainings());
-
         return "trainings-all";
+    }
+
+    @GetMapping("/trainings/user")
+    public String usersTrainings(Model model){
+
+        model.addAttribute("userTrainings",
+                trainingService.getAllUserTrainings());
+
+        return "trainings-by-user";
+    }
+
+
+    @GetMapping("/trainings/reserve/{id}")
+    public String reserveTraining(@PathVariable Long id, Model model,
+                                  RedirectAttributes redirectAttributes){
+
+       if (!trainingService.reserveTraining(id)){
+           redirectAttributes.addAttribute("isAlreadyTaken",true);
+           return "redirect:/trainings/all";
+       }
+        return "redirect:/trainings/user";
+
+    }
+
+    @GetMapping("/trainings/user/delete/{id}")
+    public String removeTrainingFromUser(@PathVariable Long id){
+
+        trainingService.removeTrainingFromUser(id);
+
+        return "redirect:/trainings/user";
     }
 }

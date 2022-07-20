@@ -17,4 +17,11 @@ public interface TrainingService {
     Training deleteTraining(Long id);
 
     List<TrainingDto> getAllTrainings();
+
+    boolean reserveTraining(Long id);
+
+    List<TrainingDto> getAllUserTrainings();
+
+    void removeTrainingFromUser(Long id);
+
 }

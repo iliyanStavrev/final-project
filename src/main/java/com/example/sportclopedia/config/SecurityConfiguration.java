@@ -36,7 +36,7 @@ public class SecurityConfiguration {
                 .loginPage("/login")
                 .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
-                .defaultSuccessUrl("/sports")
+                .defaultSuccessUrl("/trainings/all")
                 .failureForwardUrl("/login-error")
            .and()
                 .logout()

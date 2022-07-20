@@ -8,7 +8,7 @@ function onDelete(e){
    let confirmed =  confirm("Are you sure you want to delete this item?");
 
    if (confirmed){
+       // window.location.href = "http://localhost:8080/trainings/user";
        window.location.href = e.target.getAttribute("href");
    }
-
 }

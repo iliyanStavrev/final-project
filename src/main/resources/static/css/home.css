@@ -121,11 +121,14 @@ nav input {
 }
 nav form{
     margin: -57px;
-    margin-left: 510px;
+    margin-left: 250px;
     margin-right: 20px;
 }
 .group-img{
     margin-bottom: 20px;
+}
+.trainings-dropdown{
+    margin-left: 40%;
 }
 
 /* Dropdown Button */
@@ -148,7 +151,7 @@ nav form{
 .dropdown {
     position: relative;
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 15px;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -174,13 +177,35 @@ nav form{
 .dropdown-content a:hover {
     background-color: black;
 }
+.dropdown-content-trainings {
+    display: none;
+    position: absolute;
+    background-color: #2ffffbd9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content-trainings a {
+    color: black;
+    padding: 3px 16px;
+    text-decoration: none;
+    display: block;
+    padding: 2px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content-trainings a:hover {
+    background-color: black;
+}
 
 .show {
     display:block;
 }
 
-#myDropdown{
-    border-radius: 10px;
+.myDropdown{
+    border-radius: 8px;
     margin-top: 2px;
 }
 .custom-select{
@@ -214,4 +239,18 @@ nav form{
 }
 #small-image{
     width: 50px;
+}
+.trainings {
+    background-color: #8220dd;
+    color: white;
+    padding: 14px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 9px;
+}
+
+/* Dropdown button on hover & focus */
+.trainings:hover{
+    background-color: #2ffffbd9;
 }

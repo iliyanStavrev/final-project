@@ -123,4 +123,12 @@ public class UserServiceImpl implements UserService {
                 .getContext()
                 .setAuthentication(auth);
     }
+
+    @Override
+    public User findByUsername(String username) {
+
+        return userRepository
+                .findByUsername(username)
+                .orElse(null);
+    }
 }

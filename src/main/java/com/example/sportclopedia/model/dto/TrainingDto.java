@@ -14,7 +14,7 @@ public class TrainingDto {
     private LocalDateTime startedOn;
     private String coachFullName;
     private String sportName;
-    private String hall;
+    private String hallName;
     private Long sportId;
 
     public Long getId() {
@@ -73,12 +73,12 @@ public class TrainingDto {
         this.sportName = sportName;
     }
 
-    public String getHall() {
-        return hall;
+    public String getHallName() {
+        return hallName;
     }
 
-    public void setHall(String hall) {
-        this.hall = hall;
+    public void setHallName(String hallName) {
+        this.hallName = hallName;
     }
 
     public Long getSportId() {
