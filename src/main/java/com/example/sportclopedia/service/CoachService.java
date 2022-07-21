@@ -20,4 +20,6 @@ public interface CoachService {
     void addCoach(AddCoachDto addCoachDto);
 
     void deleteCoach(Long id);
+
+    boolean isCoachAdded(AddCoachDto addCoachDto);
 }

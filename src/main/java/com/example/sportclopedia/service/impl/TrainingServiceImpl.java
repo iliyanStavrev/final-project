@@ -10,6 +10,7 @@ import com.example.sportclopedia.repository.TrainingRepository;
 import com.example.sportclopedia.repository.UserRepository;
 import com.example.sportclopedia.service.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -52,10 +53,11 @@ public class TrainingServiceImpl implements TrainingService {
         training.setIntensity(IntensityLevelEnum.Intermediate);
         training.setName("Training for speed and agility");
         training.setStartedOn(LocalDateTime
-                .parse("2021-07-07 at 19:45",
+                .parse("2021-07-21 at 19:45",
                         DateTimeFormatter.ofPattern("yyyy-MM-dd 'at' HH:mm")));
         training.setSport(sportService.findByName("Basketball"));
         training.setCoach(coachService.findById(1L));
+        training.setHall(hallService.findByName("SILA"));
         trainingRepository.save(training);
 
         Training training1 = new Training();
@@ -63,10 +65,11 @@ public class TrainingServiceImpl implements TrainingService {
         training1.setIntensity(IntensityLevelEnum.High);
         training1.setName("Power moves and explosion");
         training1.setStartedOn(LocalDateTime
-                .parse("2021-07-08 at 19:45",
+                .parse("2021-07-21 at 19:45",
                         DateTimeFormatter.ofPattern("yyyy-MM-dd 'at' HH:mm")));
         training1.setSport(sportService.findByName("Basketball"));
         training1.setCoach(coachService.findById(1L));
+        training1.setHall(hallService.findByName("SILA"));
         trainingRepository.save(training1);
     }
 
@@ -175,5 +178,25 @@ public class TrainingServiceImpl implements TrainingService {
         User user = getUser();
         user.getTrainings().remove(trainingRepository.findById(id).orElse(null));
         userRepository.save(user);
+    }
+
+    @Override
+    public boolean isTrainingAdded(AddTrainingDto addTrainingDto) {
+        Training training = trainingRepository
+                .findByNameAndSport_NameAndStartedOn(addTrainingDto.getName(),
+                        addTrainingDto.getSport(), addTrainingDto.getStartedOn());
+        return training != null;
+    }
+
+    @Override
+    public void deleteExpiredTraining() {
+
+        List<Training> trainings = trainingRepository
+                .findAll()
+                .stream()
+                .filter(training -> training.getStartedOn().isBefore(LocalDateTime.now()))
+                .toList();
+
+        trainingRepository.deleteAll(trainings);
     }
 }

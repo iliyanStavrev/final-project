@@ -77,7 +77,7 @@ public class Training extends BaseEntity{
         this.hall = hall;
     }
 
-    @ManyToMany(mappedBy = "trainings")
+    @ManyToMany(mappedBy = "trainings",cascade = CascadeType.MERGE)
     public List<User> getUsers() {
         return users;
     }

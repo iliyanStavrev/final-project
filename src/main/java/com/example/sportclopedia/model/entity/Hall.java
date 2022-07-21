@@ -27,7 +27,7 @@ public class Hall extends BaseEntity{
         this.name = name;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     public String getAddress() {
         return address;
     }

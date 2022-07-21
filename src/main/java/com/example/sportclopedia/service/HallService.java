@@ -11,7 +11,7 @@ public interface HallService {
 
     void initHall();
 
-    Hall findByName(String sila);
+    Hall findByName(String name);
 
     List<HallDto> getAllHalls();
 
@@ -19,4 +19,5 @@ public interface HallService {
 
     void deleteHall(Long id);
 
+    boolean isHallAdded(AddHallDto addHallDto);
 }

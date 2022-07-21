@@ -8,5 +8,8 @@ import org.springframework.stereotype.Repository;
 public interface CoachRepository extends JpaRepository<Coach, Long> {
 
     Coach findByFullName(String coach);
+
+    Coach findByFullNameAndPhoneNumber(String fullName, String phoneNumber);
+
 }
 

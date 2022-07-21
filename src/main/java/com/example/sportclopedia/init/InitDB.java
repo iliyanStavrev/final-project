@@ -12,13 +12,15 @@ public class InitDB implements CommandLineRunner {
     private final CoachService coachService;
     private final TrainingService trainingService;
     private final UserService userService;
+    private final CleanUpTrainings cleanUpTrainings;
 
-    public InitDB(HallService hallService, SportService sportService, CoachService coachService, TrainingService trainingService, UserService userService) {
+    public InitDB(HallService hallService, SportService sportService, CoachService coachService, TrainingService trainingService, UserService userService, CleanUpTrainings cleanUpTrainings) {
         this.hallService = hallService;
         this.sportService = sportService;
         this.coachService = coachService;
         this.trainingService = trainingService;
         this.userService = userService;
+        this.cleanUpTrainings = cleanUpTrainings;
     }
 
     @Override
@@ -28,5 +30,7 @@ public class InitDB implements CommandLineRunner {
         coachService.initCoach();
         trainingService.initTraining();
         userService.init();
+//        cleanUpTrainings.cleanUpTrainings();
+
     }
 }

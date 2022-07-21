@@ -24,4 +24,7 @@ public interface TrainingService {
 
     void removeTrainingFromUser(Long id);
 
+    boolean isTrainingAdded(AddTrainingDto addTrainingDto);
+
+    void deleteExpiredTraining();
 }

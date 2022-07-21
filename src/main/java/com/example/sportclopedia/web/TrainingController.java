@@ -58,6 +58,10 @@ public class TrainingController {
 
             return "redirect:/trainings/add";
         }
+        if (trainingService.isTrainingAdded(addTrainingDto)){
+            redirectAttributes.addFlashAttribute("isAdded", true);
+            return "redirect:/trainings/add";
+        }
 
         trainingService.addTraining(addTrainingDto);
 
@@ -88,7 +92,7 @@ public class TrainingController {
 
 
     @GetMapping("/trainings/reserve/{id}")
-    public String reserveTraining(@PathVariable Long id, Model model,
+    public String reserveTraining(@PathVariable Long id,
                                   RedirectAttributes redirectAttributes){
 
        if (!trainingService.reserveTraining(id)){

@@ -54,6 +54,10 @@ public class HallController {
 
             return "redirect:/halls/add";
         }
+        if (hallService.isHallAdded(addHallDto)){
+            redirectAttributes.addFlashAttribute("isAdded",true);
+            return "redirect:/halls/add";
+        }
 
         hallService.addHall(addHallDto);
 

@@ -13,16 +13,19 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css"/>
 
 </head>
-<body style="background-image: url('/images/hall-add.jpg')">
+<body style="background-image: url('/images/coach-add.jpg')">
 <header th:replace="/fragments/navbar"></header>
 
 <section id="registerPage">
     <form class="mx-auto w-25 bg-blur rounded"
           th:action="@{/coaches/add}" th:method="post"
           th:object="${addCoachDto}">
-        <fieldset>
+        <fieldset id="coach-add">
             <legend>Add Coach</legend>
 
+            <small class="text-danger" th:if="${isAdded}">
+                This coach is already added!
+            </small>
             <div class="form-group">
                 <label for="name" class="vhide">Name of the Coach</label>
                 <input th:field="*{fullName}"

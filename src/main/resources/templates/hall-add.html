@@ -22,6 +22,9 @@
         <fieldset id="add-hall">
             <legend>Add Hall</legend>
 
+            <small class="text-danger" th:if="${isAdded}">
+                This hall is already added!
+            </small>
             <div class="form-group">
                 <label for="name" class="vhide">Name of the Hall</label>
                 <input th:field="*{name}"

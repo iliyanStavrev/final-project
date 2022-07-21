@@ -18,7 +18,7 @@ public class Coach extends BaseEntity{
     private String phoneNumber;
     private List<Training> trainings;
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false)
     public String getFullName() {
         return fullName;
     }

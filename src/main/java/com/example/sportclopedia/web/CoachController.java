@@ -55,6 +55,11 @@ public class CoachController {
 
             return "redirect:/coaches/add";
         }
+        if (coachService.isCoachAdded(addCoachDto)){
+            redirectAttributes.addFlashAttribute("isAdded",true);
+            return "redirect:/coaches/add";
+        }
+
         coachService.addCoach(addCoachDto);
 
         return "redirect:/coaches";

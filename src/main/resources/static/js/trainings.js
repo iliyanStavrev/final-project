@@ -41,7 +41,7 @@ async function getTrainingDetails() {
                 <h3>Intesity: ${training.intensity}</h3>
                 <h3>Sport: ${training.sportName}</h3>
                 <h3>Coach: ${training.coachFullName}</h3>
-                <h3>Hall: ${training.hall}</h3>
+                <h3>Hall: ${training.hallName}</h3>
                 <h3>Started on: ${training.startedOn}</h3>
               <div class="actionBtn buttons"> 
                 <a href="/trainings/reserve/${training.id}">Reserve</a>

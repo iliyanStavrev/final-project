@@ -106,4 +106,15 @@ public class CoachServiceImpl implements CoachService {
                     .deleteById(id);
         }
     }
+
+    @Override
+    public boolean isCoachAdded(AddCoachDto addCoachDto) {
+        System.out.println(addCoachDto.getFullName());
+        System.out.println(addCoachDto.getPhoneNumber());
+        Coach coach = coachRepository
+                .findByFullNameAndPhoneNumber(addCoachDto.getFullName(),
+                        addCoachDto.getPhoneNumber());
+
+        return coach != null;
+    }
 }

@@ -22,6 +22,9 @@
         <fieldset>
             <legend>Add training</legend>
 
+            <small class="text-danger" th:if="${isAdded}">
+                This training is already added!
+            </small>
             <div class="form-group">
                 <label for="username" class="vhide">Name of the training</label>
                 <input th:field="*{name}"

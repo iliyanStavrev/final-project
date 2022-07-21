@@ -90,4 +90,12 @@ public class HallServiceImpl implements HallService {
         hallRepository
                 .deleteById(id);
     }
+
+    @Override
+    public boolean isHallAdded(AddHallDto addHallDto) {
+        Hall hall = hallRepository
+                .findByNameAndAddress(addHallDto.getName(),addHallDto.getAddress());
+
+        return hall != null;
+    }
 }
