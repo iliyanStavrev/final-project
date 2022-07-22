@@ -254,3 +254,25 @@ nav form{
 .trainings:hover{
     background-color: #2ffffbd9;
 }
+.statistic {
+    text-align: center;
+}
+.statistic h1 {
+    font-size: 50px;
+    background-color: #7fffd49e;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 8px;
+}
+.statistic h2 {
+    font-size: 35px;
+}
+.statistic h3 {
+    font-size: 22px;
+}
+.stats-text {
+    background-color: #2e00ff29;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 8px;
+}

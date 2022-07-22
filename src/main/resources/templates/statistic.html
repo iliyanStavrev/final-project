@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistic</title>
+    <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+</head>
+<body style="background-image: url('/images/statistic.jpg')">
+<header th:replace="/fragments/navbar"></header>
+<div class="statistic">
+    <h1>
+        Welcome to statistic Page!
+    </h1>
+    <div class="stats-text">
+        <h2>
+            Total requests <th:block th:text="${stats.getTotalRequest()}"></th:block>
+        </h2>
+        <h3> Authorized requests <th:block th:text="${stats.getAuthRequest()}"></th:block></h3>
+        <h3> Anonymous requests <th:block th:text="${stats.getAnonRequest()}"></th:block></h3>
+    </div>
+
+</div>
+
+</body>
+</html>
