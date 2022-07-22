@@ -13,6 +13,7 @@ public class Training extends BaseEntity{
     private Integer duration;
     private IntensityLevelEnum intensity;
     private LocalDateTime startedOn;
+    private String description;
     private Coach coach;
     private Sport sport;
     private Hall hall;
@@ -49,6 +50,15 @@ public class Training extends BaseEntity{
 
     public void setStartedOn(LocalDateTime startedOn) {
         this.startedOn = startedOn;
+    }
+
+    @Column(columnDefinition = "TEXT")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

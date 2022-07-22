@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <link rel="stylesheet" type="text/css" href="/css/home.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/details.css"/>
+
+</head>
+<body style="background-image: url('/images/Fitness2.jpg')">
+<header th:replace="/fragments/navbar"></header>
+<div th:object="${training}">
+    <h1 th:text="*{name}"></h1>
+    <div id="detailsText">
+        <img th:src="'/images/' + *{sportName}  + '-vector.jpg'" alt="***no image">
+        <h3 th:text="|Duration: *{duration} minutes|"></h3>
+        <h3 th:text="|Sport: *{sportName}|"></h3>
+        <h3>Intensity: <span th:text="|*{intensity}|"></span><span id="scale"></span></h3>
+        <h3 th:text="|Start: *{startedOn}|"></h3>
+        <h3 th:text="|Hall: *{hallName}|"></h3>
+        <h3 th:text="|Coach: *{coachFullName}|"></h3>
+        <button id="btn">Description</button>
+        <div th:text="|*{description}|"></div>
+    </div>
+</div>
+</body>
+<footer th:replace="/fragments/footer"></footer>
+<script>
+    document.getElementById('btn').addEventListener('click', (e) => {
+        let description = e.currentTarget.nextElementSibling;
+        description.style.display === 'block'
+            ? description.style.display = 'none'
+            : description.style.display = 'block';
+
+        if (description.textContent === '') {
+            description.textContent = 'There is no description for this training!'
+        }
+    });
+    let intensityElement = document.querySelector("span");
+    let intensity = intensityElement.textContent;
+    switch (intensity) {
+        case 'Low':
+            intensityElement.style.color = 'green';
+            intensityElement.textContent = 'Low*'
+            break;
+        case 'Intermediate':
+            intensityElement.style.color = 'orange';
+            intensityElement.textContent = 'Intermediate**'
+            break;
+        case 'High':
+            intensityElement.style.color = 'red';
+            intensityElement.textContent = 'High***';
+            break;
+        case 'Professional':
+            intensityElement.style.color = 'blueviolet';
+            intensityElement.textContent = 'Professional****';
+            break;
+    }
+</script>
+</html>

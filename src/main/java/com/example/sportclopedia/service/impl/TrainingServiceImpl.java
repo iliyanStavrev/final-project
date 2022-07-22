@@ -53,11 +53,12 @@ public class TrainingServiceImpl implements TrainingService {
         training.setIntensity(IntensityLevelEnum.Intermediate);
         training.setName("Training for speed and agility");
         training.setStartedOn(LocalDateTime
-                .parse("2021-07-21 at 19:45",
+                .parse("2021-08-21 at 19:45",
                         DateTimeFormatter.ofPattern("yyyy-MM-dd 'at' HH:mm")));
         training.setSport(sportService.findByName("Basketball"));
         training.setCoach(coachService.findById(1L));
         training.setHall(hallService.findByName("SILA"));
+        training.setDescription("Basketball is an extremely dynamic sport that requires movements in multiple planes of motion as well as rapid transitions from jogging to sprinting to jumping. The ability to quickly elude defenders, rapidly decelerate to take a jump shot, or explosively jump up to grab a rebound are all skills required to effectively play the sport.It is equally important for the athlete to be able to perform these skills in a variety of directions and in a controlled manner to ensure injuries do not ensue. Due to the myriad of physical demands that come with the sport makes speed and agility training a crucial component to incorporate into a basketball training program.");
         trainingRepository.save(training);
 
         Training training1 = new Training();
@@ -65,11 +66,12 @@ public class TrainingServiceImpl implements TrainingService {
         training1.setIntensity(IntensityLevelEnum.High);
         training1.setName("Power moves and explosion");
         training1.setStartedOn(LocalDateTime
-                .parse("2021-07-21 at 19:45",
+                .parse("2021-08-21 at 19:45",
                         DateTimeFormatter.ofPattern("yyyy-MM-dd 'at' HH:mm")));
         training1.setSport(sportService.findByName("Basketball"));
         training1.setCoach(coachService.findById(1L));
         training1.setHall(hallService.findByName("SILA"));
+        training.setDescription("The power move is executed by pivoting towards the basket to seal the defender, then using a two handed power dribble followed by a jump stop to get closer to the basket. Immediately after the jump stop the player jumps up for a power shot or jump hook.");
         trainingRepository.save(training1);
     }
 
@@ -198,5 +200,15 @@ public class TrainingServiceImpl implements TrainingService {
                 .toList();
 
         trainingRepository.deleteAll(trainings);
+    }
+
+    @Override
+    public TrainingDto findById(Long id) {
+
+        return trainingRepository
+                .findById(id)
+                .map(training -> modelMapper
+                        .map(training, TrainingDto.class))
+                .orElse(null);
     }
 }

@@ -16,9 +16,11 @@
             My Trainings!
         </h1>
         <div class="text-wrapper" th:each="t : ${userTrainings}" th:object="${t}">
-            <div class="tr text"
-                 th:text="|* *{name} - *{startedOn} - *{hallName}|">
-            </div>
+            <a class="training-details-text" th:href="@{/trainings/details/{id}(id=*{id})}">
+                <div class="tr-text"
+                     th:text="|* *{name} - *{startedOn} - *{hallName}|">
+                </div>
+            </a>
             <div class="vectors-my">
                 <a class="deleteBtn">
                     <img th:href="@{/trainings/user/delete/{id}(id=*{id})}"

@@ -12,6 +12,7 @@ public class TrainingDto {
     private Integer duration;
     private IntensityLevelEnum intensity;
     private LocalDateTime startedOn;
+    private String description;
     private String coachFullName;
     private String sportName;
     private String hallName;
@@ -55,6 +56,14 @@ public class TrainingDto {
 
     public void setStartedOn(LocalDateTime startedOn) {
         this.startedOn = startedOn;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCoachFullName() {

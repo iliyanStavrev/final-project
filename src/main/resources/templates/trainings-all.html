@@ -16,9 +16,11 @@
             All Trainings!
         </h1>
         <div class="text-wrapper" th:each="t : ${trainings}" th:object="${t}">
-            <div class="tr text"
-                 th:text="|* *{name} - *{duration} minutes - coach *{coachFullName}|">
-            </div>
+            <a class="training-details-text" th:href="@{/trainings/details/{id}(id=*{id})}">
+                <div class="tr-text"
+                     th:text="|* *{name} - *{duration} minutes - coach *{coachFullName}|">
+                </div>
+            </a>
             <div class="vectors-all">
                 <a sec:authorize="hasRole('ADMIN')" th:href="@{/trainings/delete/{id}(id = *{id})}">
                     <img class="delete" src="/images/delete-button1.png" alt="***no image">
@@ -28,7 +30,7 @@
                         <img
                                 class="add" src="/images/add-button.png" alt="***no image">
                     </a>
-                <a th:href="@{/trainings/details/{id}(id = *{sportId})}">
+                <a th:href="@{/trainings/sport/{id}(id = *{sportId})}">
                     <img class="sport" th:src="'/images/' + *{sportName}  + '-vector.jpg'" alt="***no image">
                 </a>
             </div>

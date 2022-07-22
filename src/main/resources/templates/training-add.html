@@ -106,6 +106,14 @@
             <small class="invalid-feedback text-danger">
                 Hall error
             </small>
+            <label for="description" class="vhide">Description</label>
+            <textarea th:field="*{description}"
+                      th:errorclass="'is-invalid'"
+                      id="description"  name="description" type="text" placeholder="Description">
+            </textarea>
+            <small class="invalid-feedback text-danger">
+                Description should be more than 20 symbols!
+            </small>
 
             <button type="submit" class="register">Add Training</button>
 

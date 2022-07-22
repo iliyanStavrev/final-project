@@ -45,6 +45,7 @@ async function getTrainingDetails() {
                 <h3>Started on: ${training.startedOn}</h3>
               <div class="actionBtn buttons"> 
                 <a href="/trainings/reserve/${training.id}">Reserve</a>
+                <a href="/trainings/details/${training.id}">Details</a>
               </div>
             </div>  
         </div>

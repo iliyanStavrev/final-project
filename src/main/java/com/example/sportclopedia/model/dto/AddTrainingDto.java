@@ -12,6 +12,7 @@ public class AddTrainingDto {
     private Integer duration;
     private String intensity;
     private LocalDateTime startedOn;
+    private String description;
     private String coach;
     private String sport;
     private String hall;
@@ -54,6 +55,14 @@ public class AddTrainingDto {
         this.startedOn = startedOn;
     }
 
+    @Size(min = 20)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     @NotBlank
     @Size(min = 2,max = 40)
     public String getCoach() {

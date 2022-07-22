@@ -31,7 +31,7 @@ public class TrainingController {
         return new AddTrainingDto();
     }
 
-    @GetMapping("/trainings/details/{id}")
+    @GetMapping("/trainings/sport/{id}")
     public String detailsPage(@PathVariable String id){
 
         return "trainings-by-sports";
@@ -109,5 +109,16 @@ public class TrainingController {
         trainingService.removeTrainingFromUser(id);
 
         return "redirect:/trainings/user";
+    }
+
+    @GetMapping("trainings/details/{id}")
+    public String trainingDetails(@PathVariable Long id,
+                                  Model model){
+
+        model.addAttribute("training", trainingService.findById(id));
+
+
+        return "training-details";
+
     }
 }
