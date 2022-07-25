@@ -21,6 +21,7 @@ public class Sport extends BaseEntity{
         this.name = name;
     }
 
+    @Column(columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }

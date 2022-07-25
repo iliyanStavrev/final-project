@@ -6,7 +6,6 @@ import com.example.sportclopedia.model.dto.SportDto;
 import com.example.sportclopedia.model.entity.Sport;
 import com.example.sportclopedia.model.entity.Training;
 import com.example.sportclopedia.repository.SportRepository;
-import com.example.sportclopedia.service.HallService;
 import com.example.sportclopedia.service.SportService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -19,18 +18,16 @@ import java.util.stream.Collectors;
 public class SportServiceImpl implements SportService {
 
     private final SportRepository sportRepository;
-    private final HallService hallService;
     private final ModelMapper modelMapper;
 
-    public SportServiceImpl(SportRepository sportRepository, HallService hallService, ModelMapper modelMapper) {
+    public SportServiceImpl(SportRepository sportRepository, ModelMapper modelMapper) {
         this.sportRepository = sportRepository;
-        this.hallService = hallService;
         this.modelMapper = modelMapper;
     }
 
     @Override
     public void initSport() {
-        if (sportRepository.count() > 2){
+        if (sportRepository.count() > 0){
             return;
         }
         List<Sport> sports = new ArrayList<>();
@@ -48,9 +45,15 @@ public class SportServiceImpl implements SportService {
         sport2.setName("Tennis");
         sport2.setDescription("Tennis is good for developing whole body!");
 
+        Sport sport3 = new Sport();
+        sport3.setName("Volleyball");
+        sport3.setDescription("volleyball, Game played by two teams of six players each, in which an inflated ball is volleyed over a high net. Each team tries to make the ball touch the court within the opposing side's playing areas before it can be returned. A team is allowed to touch the ball three times before returning it.");
+
         sports.add(sport);
         sports.add(sport1);
         sports.add(sport2);
+        sports.add(sport3);
+
         sportRepository.saveAll(sports);
 
     }
@@ -85,5 +88,14 @@ public class SportServiceImpl implements SportService {
     public Sport findByName(String name) {
         return sportRepository
                 .findByName(name);
+    }
+
+    @Override
+    public List<String> getAllSportsNames() {
+        return sportRepository
+                .findAll()
+                .stream()
+                .map(Sport::getName)
+                .toList();
     }
 }

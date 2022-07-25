@@ -20,4 +20,6 @@ public interface HallService {
     void deleteHall(Long id);
 
     boolean isHallAdded(AddHallDto addHallDto);
+
+    List<String> getAllHallsNames();
 }

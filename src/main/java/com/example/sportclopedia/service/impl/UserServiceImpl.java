@@ -100,8 +100,7 @@ public class UserServiceImpl implements UserService {
             throw new DuplicateEntryException(registerDto.getEmail());
         }
 
-        UserRole userRole = new UserRole();
-        userRole.setUserRole(UserRoleEnum.USER);
+        UserRole userRole = userRoleRepository.findByUserRole(UserRoleEnum.USER);
 
         User user = modelMapper
                 .map(registerDto, User.class);

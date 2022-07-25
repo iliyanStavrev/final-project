@@ -14,7 +14,7 @@ public interface TrainingService {
 
     void addTraining(AddTrainingDto addTrainingDto);
 
-    Training deleteTraining(Long id);
+    void deleteTraining(Long id);
 
     List<TrainingDto> getAllTrainings();
 
@@ -29,5 +29,7 @@ public interface TrainingService {
     void deleteExpiredTraining();
 
     TrainingDto findById(Long id);
+
+    List<TrainingDto> getBestTrainings();
 
 }

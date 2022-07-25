@@ -31,6 +31,9 @@
         <li class="user" sec:authorize="isAuthenticated()"><a href="/coaches">Coaches</a></li>
 
         <li class="guest" sec:authorize="!isAuthenticated()">
+            <a href="/sports">Sports</a>
+        </li>
+        <li class="guest" sec:authorize="!isAuthenticated()">
             <a href="/login">Login</a>
         </li>
         <li class="guest" sec:authorize="!isAuthenticated()">

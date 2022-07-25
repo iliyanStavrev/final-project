@@ -15,7 +15,7 @@ public class CleanUpTrainings {
         this.trainingService = trainingService;
     }
 
-    @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 0 0/4 * * *")
     public void cleanUpTrainings(){
         trainingService.deleteExpiredTraining();
     }

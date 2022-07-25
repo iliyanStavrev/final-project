@@ -98,4 +98,13 @@ public class HallServiceImpl implements HallService {
 
         return hall != null;
     }
+
+    @Override
+    public List<String> getAllHallsNames() {
+        return hallRepository
+                .findAll()
+                .stream()
+                .map(h -> h.getName())
+                .toList();
+    }
 }

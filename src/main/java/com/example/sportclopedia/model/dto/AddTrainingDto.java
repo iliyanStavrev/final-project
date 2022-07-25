@@ -28,6 +28,7 @@ public class AddTrainingDto {
     }
 
     @Positive
+    @NotNull
     public Integer getDuration() {
         return duration;
     }
@@ -46,6 +47,7 @@ public class AddTrainingDto {
     }
 
     @FutureOrPresent
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     public LocalDateTime getStartedOn() {
         return startedOn;
@@ -56,6 +58,7 @@ public class AddTrainingDto {
     }
 
     @Size(min = 20)
+    @NotBlank
     public String getDescription() {
         return description;
     }
@@ -83,7 +86,7 @@ public class AddTrainingDto {
         this.sport = sport;
     }
 
-    @NotBlank
+    @NotNull
     @Size(min = 2,max = 40)
     public String getHall() {
         return hall;

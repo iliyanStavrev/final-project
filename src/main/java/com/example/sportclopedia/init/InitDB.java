@@ -30,7 +30,7 @@ public class InitDB implements CommandLineRunner {
         coachService.initCoach();
         trainingService.initTraining();
         userService.init();
-//        cleanUpTrainings.cleanUpTrainings();
+        cleanUpTrainings.cleanUpTrainings();
 
     }
 }

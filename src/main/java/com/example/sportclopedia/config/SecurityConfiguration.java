@@ -28,7 +28,8 @@ public class SecurityConfiguration {
         http
                 .authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/", "/register", "/login").permitAll()
+                .antMatchers("/", "/register", "/login", "/sports", "/sports/api/all")
+                .permitAll()
                 .antMatchers("/trainings/add", "/halls/add","/coaches/add","/statistic")
                 .hasRole(UserRoleEnum.ADMIN.name())
                 .anyRequest().authenticated()

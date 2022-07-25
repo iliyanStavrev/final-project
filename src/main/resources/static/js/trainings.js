@@ -5,7 +5,7 @@ async function getTrainingDetails() {
 
     let id = window.location.pathname.split("/")[3];
 
-    let url = `http://localhost:8080/sports/details/${id}`;
+    let url = `http://localhost:8080/sports/api/details/${id}`;
     let response = await fetch(url);
     let trainings = await response.json();
 
@@ -23,6 +23,10 @@ async function getTrainingDetails() {
     }
 
     h1.textContent = "All Trainings for " + trainings[0].sportName + "!";
+    let img = document.createElement('img');
+    img.setAttribute('class', 'img-sport');
+    img.src = '/images/' + trainings[0].sportName + '-vector.jpg'
+    main.appendChild(img);
     main.appendChild(h1);
 
     trainings.forEach(training => {

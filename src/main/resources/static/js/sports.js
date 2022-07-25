@@ -2,7 +2,7 @@
 window.onload = getSports;
 
 async function getSports(){
-    let url = "http://localhost:8080/sports/all";
+    let url = "http://localhost:8080/sports/api/all";
     let response = await fetch(url);
     let data = await response.json();
 
@@ -17,7 +17,7 @@ async function getSports(){
         section.innerHTML = `
             <div class="card-box">
               <img src="/images/${sport.name}.jpg" alt="*">
-                  <div>
+                  <div class="div">
                         <div class="text-center">
                             <p class="name">${sport.name}</p>
                             <p class="description">${sport.description}</p>

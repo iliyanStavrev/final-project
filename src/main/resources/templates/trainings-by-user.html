@@ -17,16 +17,18 @@
         </h1>
         <div class="text-wrapper" th:each="t : ${userTrainings}" th:object="${t}">
             <a class="training-details-text" th:href="@{/trainings/details/{id}(id=*{id})}">
-                <div class="tr-text"
+                <div class="tr-text" title="Details"
                      th:text="|* *{name} - *{startedOn} - *{hallName}|">
                 </div>
             </a>
             <div class="vectors-my">
-                <a class="deleteBtn">
-                    <img th:href="@{/trainings/user/delete/{id}(id=*{id})}"
+                <a class="deleteBtn" title="Remove training"
+                   th:href="@{/trainings/user/delete/{id}(id=*{id})}">
+                    <img
                          class="remove" src="/images/remove-button.png" alt="***no image">
                 </a>
-                <a th:href="@{/trainings/details/{id}(id = *{sportId})}">
+                <a th:href="@{/trainings/sport/{id}(id = *{sportId})}"
+                   th:title="'Check all ' + *{sportName} + ' trainings'">
                     <img class="sport" th:src="'/images/' + *{sportName}  + '-vector.jpg'" alt="***no image">
                 </a>
             </div>

@@ -1,16 +1,16 @@
 
 .card-box {
     box-shadow: 0px 0px 30px 0px;
-    padding: 20px;
-    margin-left: 120px;
+    padding: 10px;
+    margin-left: 80px;
     background-position: right 35% bottom 45%;
     box-sizing: border-box;
     border-radius: 15px;
     float: left;
-    height: 550px;
+    height: 480px;
     color: #8220de;
     font-weight: bold;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
     margin-top: 20px;
     background-color: #343b44db;
 }
@@ -76,8 +76,8 @@
 }
 
 .btn-group {
-    margin: 0 auto;
-    margin-top: 85px;
+    /*margin: 0 auto;*/
+    margin-top: 55px;
     text-align: center;
 }
 
@@ -218,3 +218,4 @@ h1 {
 .description {
     font-size: 19px;
 }
+

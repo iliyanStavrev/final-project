@@ -4,7 +4,7 @@
 
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>My Sport Application</title>
     <link rel="stylesheet" type="text/css" href="/css/home.css"/>
 </head>
@@ -16,16 +16,13 @@
     <!--Navigation-->
 
     <header th:replace="/fragments/navbar"></header>
-
+    <div id="welcome-message">
+        <h1 id="firstH1">Welcome to My Sport Application!</h1>
+        <h1>We offer multiply trainings specially for you!
+            <br><a href="/register">Register</a> or <a href="/login">Login</a> to start the journey!</h1>
+    </div>
     <main id="main-content">
-        <section id="welcomePage">
-            <div id="welcome-message">
-                <h1>Welcome to My Sport Application!</h1>
-                <h1>We offer multiply trainings specially for you!
-                    <br>
-                    <a href="/register">Register</a> or <a href="/login">Login</a> to start the journey!</h1>
-            </div>
-
+        <section class="welcomePage">
             <div class="images">
                 <div class="group-img">
                     <img src="/images/group-athletes.jpg">
@@ -38,7 +35,29 @@
                 </div>
             </div>
 
-
+        </section>
+        <section class="welcomePage1">
+            <h2>
+                Our top frequent training sessions from last week!
+            </h2>
+            <div class="container-trainings" th:each="t : ${bestTrainings}"
+                 th:object="${t}">
+                <p th:text="|*{name} by coach *{coachFullName}|">
+                </p>
+                <img class="sport" th:src="'/images/' + *{sportName}  + '-vector.jpg'" alt="***no image">
+            </div>
+            <h2>
+                Our point of view about trainings and healthy lifestyle!
+            </h2>
+            <div class="text-justify">
+                <p>Lorem ipsum dolor sit amet. Quo rerum distinctio eos velit dolores 33 ullam atque ab tenetur delectus in unde nemo est omnis quos qui tempora deserunt. Eos voluptas laboriosam id distinctio saepe qui sunt incidunt est labore repudiandae et modi velit. </p><p>Ut rerum iure ut impedit omnis aut rerum ullam et sapiente vero id natus molestias qui facere perferendis. Aut explicabo itaque non dolore voluptatibus et placeat sapiente vel minima quae id quibusdam voluptates? Eos earum corrupti et officiis vitae vel laborum incidunt. Eum accusantium accusamus ea dolores facilis eos maiores voluptatem id animi rerum sed iusto galisum et accusantium explicabo. </p><p>Sit quia porro et molestias enim ut illo quia quo sint inventore et vitae quia sed rerum quam et nihil molestiae. Sit possimus eligendi hic omnis voluptate est illum incidunt? Aut fuga deleniti et error excepturi est dolorem quisquam et quibusdam enim ab voluptas asperiores? </p>
+            </div>
+            <h2>
+                Advice and recommendations
+            </h2>
+            <div class="text-justify">
+                <p>Ut rerum iure ut impedit omnis aut rerum ullam et sapiente vero id natus molestias qui facere perferendis. Aut explicabo itaque non dolore voluptatibus et placeat sapiente vel minima quae id quibusdam voluptates? Eos earum corrupti et officiis vitae vel laborum incidunt. Eum accusantium accusamus ea dolores facilis eos maiores voluptatem id animi rerum sed iusto galisum et accusantium explicabo.</p>
+            </div>
         </section>
 
     </main>

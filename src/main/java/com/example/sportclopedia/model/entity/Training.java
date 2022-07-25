@@ -44,6 +44,7 @@ public class Training extends BaseEntity{
         this.intensity = intensity;
     }
 
+    @Column(nullable = false)
     public LocalDateTime getStartedOn() {
         return startedOn;
     }
@@ -87,7 +88,8 @@ public class Training extends BaseEntity{
         this.hall = hall;
     }
 
-    @ManyToMany(mappedBy = "trainings",cascade = CascadeType.MERGE)
+    @ManyToMany(mappedBy = "trainings",fetch = FetchType.EAGER,
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     public List<User> getUsers() {
         return users;
     }

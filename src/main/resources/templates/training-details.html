@@ -14,18 +14,22 @@
     <h1 th:text="*{name}"></h1>
     <div id="detailsText">
         <img th:src="'/images/' + *{sportName}  + '-vector.jpg'" alt="***no image">
+        <a id="btnAdd" th:href="@{/trainings/reserve/{id}(id = *{id})}"
+                th:title="${isAlreadyTaken}">
+            Add training</a>
         <h3 th:text="|Duration: *{duration} minutes|"></h3>
         <h3 th:text="|Sport: *{sportName}|"></h3>
         <h3>Intensity: <span th:text="|*{intensity}|"></span><span id="scale"></span></h3>
         <h3 th:text="|Start: *{startedOn}|"></h3>
         <h3 th:text="|Hall: *{hallName}|"></h3>
         <h3 th:text="|Coach: *{coachFullName}|"></h3>
-        <button id="btn">Description</button>
+        <button id="btn" title="click">Description</button>
         <div th:text="|*{description}|"></div>
     </div>
 </div>
 </body>
 <footer th:replace="/fragments/footer"></footer>
+<script type="text/javascript" src="/js/confirmation.js"></script>
 <script>
     document.getElementById('btn').addEventListener('click', (e) => {
         let description = e.currentTarget.nextElementSibling;

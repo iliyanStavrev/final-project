@@ -13,4 +13,6 @@ public interface SportService {
     List<SportDto> findAll();
 
     Sport findByName(String basketball);
+
+    List<String> getAllSportsNames();
 }

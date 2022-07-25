@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css"/>
     <link rel="stylesheet" type="text/css" href="/css/home.css"/>
 </head>
-<body style="background-image: url('/images/add-training.jpg')">
+<body style="background-image: url('/images/add-training1.jpg')">
 <header th:replace="/fragments/navbar"></header>
 
 <section id="registerPage">
@@ -35,23 +35,18 @@
                 </small>
             </div>
 
-            <label for="fullName" class="vhide">Full name</label>
+            <label for="duration" class="vhide">Duration</label>
             <input th:field="*{duration}"
-                   th:errorclass="'is-invalid'"
-                   id="fullName" class="form-control fullName" name="duration" type="text" placeholder="Duration">
-
+                   th:errorclass="is-invalid"
+                   id="duration" class="form-control duration" name="duration" type="text" placeholder="Duration">
             <small class="invalid-feedback text-danger">
                 Must be positive number!
             </small>
 
-            <label for="intensity" class="vhide">Intensity</label>
-<!--            <input th:field="*{intensity}"-->
-<!--                   th:errorclass="'is-invalid'"-->
-<!--                   id="intensity" class="form-control" name="intensity" type="text" placeholder="Intensity">-->
-
+            <label for="intensity" class="vhide">Select intensity level</label>
             <select th:field="*{intensity}"
                     th:errorclass="is-invalid"
-                    class="browser-default custom-select" id="intensity" name="intensity">
+                    class="form-control custom-select" id="intensity" name="intensity">
                 <option value="select">
                     Select intensity level
                 </option>
@@ -59,21 +54,23 @@
                         th:value="${i}" th:text="${i}">
                 </option>
             </select>
+            <small th:if="${isIntensityNull}" class="text-danger">
+               You must select intensity level!
+            </small>
 
-
-            <label for="startedOn">Start on</label>
+            <label for="startedOn">Select start on</label>
             <input th:field="*{startedOn}"
-                   th:errorclass="'is-invalid'"
+                   th:errorclass="is-invalid"
                    id="startedOn"
-                   class="date" name="startedOn" type="datetime-local" placeholder="Started on">
+                   class="form-control date" name="startedOn" type="datetime-local" placeholder="Started on">
             <small class="invalid-feedback text-danger">
                 Date should be present or future!
             </small>
 
-            <label for="coach" class="vhide">Coach</label>
+            <label for="coach" class="vhide">Select Coach</label>
             <select th:field="*{coach}"
                     th:errorclass="is-invalid"
-                    class="browser-default custom-select" id="coach" name="coach">
+                    class="form-control custom-select" id="coach" name="coach">
                 <option value="select">
                     Select coach
                 </option>
@@ -81,35 +78,44 @@
                         th:value="${c}" th:text="${c}">
                 </option>
             </select>
-
-            <small class="invalid-feedback text-danger">
-                Coach error
+            <small th:if="${isCoachNull}" class="text-danger">
+                You must select coach!
             </small>
 
-<!--            <label for="coach" class="vhide">Coach</label>-->
-<!--            <input th:field="*{coach}"-->
-<!--                   th:errorclass="'is-invalid'"-->
-<!--                    id="coach" class="form-control" name="coach" type="text"  placeholder="Coach">-->
-
-            <label for="sport" class="vhide">Sport</label>
-            <input th:field="*{sport}"
-                   th:errorclass="'is-invalid'"
-                    id="sport" class="form-control field" name="sport" type="text" placeholder="Sport">
-            <small class="invalid-feedback text-danger">
-                Sport error
+            <label for="sport" class="vhide">Select sport</label>
+            <select th:field="*{sport}"
+                    th:errorclass="is-invalid"
+                    class="browser-default custom-select form-control" id="sport" name="sport">
+                <option value="select">
+                    Select sport
+                </option>
+                <option th:each="s : ${sports}"
+                        th:value="${s}" th:text="${s}">
+                </option>
+            </select>
+            <small th:if="${isSportNull}" class="text-danger">
+                You must select sport!
             </small>
 
-            <label for="hall" class="vhide">Hall</label>
-            <input th:field="*{hall}"
-                   th:errorclass="'is-invalid'"
-                    id="hall" class="form-control" name="hall" type="text" placeholder="Hall">
-            <small class="invalid-feedback text-danger">
-                Hall error
+            <label for="hall" class="vhide">Select hall</label>
+            <select th:field="*{hall}"
+                    th:errorclass="is-invalid"
+                    class="browser-default custom-select form-control" id="hall" name="hall">
+                <option value="select">
+                    Select hall
+                </option>
+                <option th:each="h : ${halls}"
+                        th:value="${h}" th:text="${h}">
+                </option>
+            </select>
+            <small th:if="${isHallNull}" class="text-danger">
+                You must select hall!
             </small>
+
             <label for="description" class="vhide">Description</label>
             <textarea th:field="*{description}"
-                      th:errorclass="'is-invalid'"
-                      id="description"  name="description" type="text" placeholder="Description">
+                      th:errorclass="is-invalid"
+                      class="form-control description" id="description"  name="description" type="text" placeholder="Description">
             </textarea>
             <small class="invalid-feedback text-danger">
                 Description should be more than 20 symbols!

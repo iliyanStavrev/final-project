@@ -74,6 +74,7 @@
     margin-left: 75%;
     border-radius: 10px;
     position: absolute;
+    cursor: pointer;
 }
 .delete:hover{
     width: 60px;
@@ -123,5 +124,5 @@ main > h1 {
     cursor: pointer;
 }
 .tr-text:hover{
-    color: blueviolet;
+    color: rgba(138, 43, 226, 0.6);
 }

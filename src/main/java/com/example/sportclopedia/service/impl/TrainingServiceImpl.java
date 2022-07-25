@@ -10,13 +10,13 @@ import com.example.sportclopedia.repository.TrainingRepository;
 import com.example.sportclopedia.repository.UserRepository;
 import com.example.sportclopedia.service.*;
 import org.modelmapper.ModelMapper;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,7 +53,7 @@ public class TrainingServiceImpl implements TrainingService {
         training.setIntensity(IntensityLevelEnum.Intermediate);
         training.setName("Training for speed and agility");
         training.setStartedOn(LocalDateTime
-                .parse("2021-08-21 at 19:45",
+                .parse("2022-08-21 at 19:45",
                         DateTimeFormatter.ofPattern("yyyy-MM-dd 'at' HH:mm")));
         training.setSport(sportService.findByName("Basketball"));
         training.setCoach(coachService.findById(1L));
@@ -66,12 +66,12 @@ public class TrainingServiceImpl implements TrainingService {
         training1.setIntensity(IntensityLevelEnum.High);
         training1.setName("Power moves and explosion");
         training1.setStartedOn(LocalDateTime
-                .parse("2021-08-21 at 19:45",
+                .parse("2022-08-21 at 19:45",
                         DateTimeFormatter.ofPattern("yyyy-MM-dd 'at' HH:mm")));
         training1.setSport(sportService.findByName("Basketball"));
         training1.setCoach(coachService.findById(1L));
         training1.setHall(hallService.findByName("SILA"));
-        training.setDescription("The power move is executed by pivoting towards the basket to seal the defender, then using a two handed power dribble followed by a jump stop to get closer to the basket. Immediately after the jump stop the player jumps up for a power shot or jump hook.");
+        training1.setDescription("The power move is executed by pivoting towards the basket to seal the defender, then using a two handed power dribble followed by a jump stop to get closer to the basket. Immediately after the jump stop the player jumps up for a power shot or jump hook.");
         trainingRepository.save(training1);
     }
 
@@ -111,17 +111,22 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public Training deleteTraining(Long id) {
+    public void deleteTraining(Long id) {
+
         Training training = trainingRepository
                 .findById(id).orElse(null);
         if (LocalDateTime.now().isAfter(training.getStartedOn())) {
+
+             userRepository.findAll()
+                    .stream()
+                    .filter(user -> user.getTrainings().contains(training))
+                    .forEach(user -> user.getTrainings().remove(training));
+
             trainingRepository
                     .deleteById(id);
         } else {
             throw new TrainingTimeViolation(training.getName(), training.getStartedOn());
         }
-
-        return training;
     }
 
     @Override
@@ -197,6 +202,7 @@ public class TrainingServiceImpl implements TrainingService {
                 .findAll()
                 .stream()
                 .filter(training -> training.getStartedOn().isBefore(LocalDateTime.now()))
+                .filter(training -> training.getUsers().isEmpty())
                 .toList();
 
         trainingRepository.deleteAll(trainings);
@@ -210,5 +216,19 @@ public class TrainingServiceImpl implements TrainingService {
                 .map(training -> modelMapper
                         .map(training, TrainingDto.class))
                 .orElse(null);
+    }
+
+    @Override
+    public List<TrainingDto> getBestTrainings() {
+
+        return trainingRepository
+                .findAll()
+                .stream()
+                .sorted((a,b) -> b.getUsers().size() - a.getUsers().size())
+                .limit(3)
+                .map(training -> modelMapper
+                        .map(training, TrainingDto.class))
+                .toList();
+
     }
 }

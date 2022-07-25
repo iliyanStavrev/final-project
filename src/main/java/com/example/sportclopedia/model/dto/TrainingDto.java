@@ -3,6 +3,7 @@ package com.example.sportclopedia.model.dto;
 import com.example.sportclopedia.model.enums.IntensityLevelEnum;
 
 
+import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 public class TrainingDto {

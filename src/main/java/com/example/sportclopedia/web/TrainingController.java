@@ -3,6 +3,8 @@ package com.example.sportclopedia.web;
 import com.example.sportclopedia.model.dto.AddTrainingDto;
 import com.example.sportclopedia.model.entity.Training;
 import com.example.sportclopedia.service.CoachService;
+import com.example.sportclopedia.service.HallService;
+import com.example.sportclopedia.service.SportService;
 import com.example.sportclopedia.service.TrainingService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,27 +22,34 @@ public class TrainingController {
 
     private final TrainingService trainingService;
     private final CoachService coachService;
+    private final SportService sportService;
+    private final HallService hallService;
 
-    public TrainingController(TrainingService trainingService, CoachService coachService) {
+    public TrainingController(TrainingService trainingService, CoachService coachService,
+                              SportService sportService, HallService hallService) {
         this.trainingService = trainingService;
         this.coachService = coachService;
+        this.sportService = sportService;
+        this.hallService = hallService;
     }
 
     @ModelAttribute
-    public AddTrainingDto addTrainingDto(){
+    public AddTrainingDto addTrainingDto() {
         return new AddTrainingDto();
     }
 
     @GetMapping("/trainings/sport/{id}")
-    public String detailsPage(@PathVariable String id){
+    public String detailsPage(@PathVariable String id) {
 
         return "trainings-by-sports";
     }
 
     @GetMapping("/trainings/add")
-    public String addTrainingPage(Model model){
+    public String addTrainingPage(Model model) {
 
         model.addAttribute("coaches", coachService.getAllCoachesNames());
+        model.addAttribute("sports", sportService.getAllSportsNames());
+        model.addAttribute("halls", hallService.getAllHallsNames());
 
         return "training-add";
     }
@@ -48,17 +57,34 @@ public class TrainingController {
     @PostMapping("/trainings/add")
     public String addTraining(@Valid AddTrainingDto addTrainingDto,
                               BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes){
+                              RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("addTrainingDto", addTrainingDto);
             redirectAttributes.addFlashAttribute
                     ("org.springframework.validation.BindingResult.addTrainingDto"
-                            ,bindingResult);
-
+                            , bindingResult);
             return "redirect:/trainings/add";
         }
-        if (trainingService.isTrainingAdded(addTrainingDto)){
+         if (addTrainingDto.getIntensity().equals("select")) {
+            redirectAttributes.addFlashAttribute("isIntensityNull", true);
+            return "redirect:/trainings/add";
+        }
+         if (addTrainingDto.getCoach().equals("select")) {
+            redirectAttributes.addFlashAttribute("isCoachNull", true);
+            return "redirect:/trainings/add";
+        }
+        if (addTrainingDto.getSport().equals("select")) {
+            redirectAttributes.addFlashAttribute("isSportNull", true);
+            return "redirect:/trainings/add";
+        }
+        if (addTrainingDto.getHall().equals("select")) {
+            redirectAttributes.addFlashAttribute("isHallNull", true);
+            return "redirect:/trainings/add";
+        }
+
+
+        if (trainingService.isTrainingAdded(addTrainingDto)) {
             redirectAttributes.addFlashAttribute("isAdded", true);
             return "redirect:/trainings/add";
         }
@@ -67,22 +93,24 @@ public class TrainingController {
 
         return "redirect:/trainings/all";
     }
+
     @GetMapping("/trainings/delete/{id}")
-    public String deleteHall(@PathVariable Long id){
+    public String deleteTraining(@PathVariable Long id) {
 
-       Training training = trainingService.deleteTraining(id);
+        trainingService.deleteTraining(id);
 
-        return "redirect:/trainings/details/" + training.getSport().getId();
+        return "redirect:/trainings/all";
     }
+
     @GetMapping("/trainings/all")
-    public String trainingsPage(Model model){
+    public String trainingsPage(Model model) {
 
         model.addAttribute("trainings", trainingService.getAllTrainings());
         return "trainings-all";
     }
 
     @GetMapping("/trainings/user")
-    public String usersTrainings(Model model){
+    public String usersTrainings(Model model) {
 
         model.addAttribute("userTrainings",
                 trainingService.getAllUserTrainings());
@@ -93,18 +121,18 @@ public class TrainingController {
 
     @GetMapping("/trainings/reserve/{id}")
     public String reserveTraining(@PathVariable Long id,
-                                  RedirectAttributes redirectAttributes){
+                                  RedirectAttributes redirectAttributes) {
 
-       if (!trainingService.reserveTraining(id)){
-           redirectAttributes.addAttribute("isAlreadyTaken",true);
-           return "redirect:/trainings/all";
-       }
+        if (!trainingService.reserveTraining(id)) {
+            redirectAttributes.addAttribute("isAlreadyTaken", true);
+            return "redirect:/trainings/all";
+        }
         return "redirect:/trainings/user";
 
     }
 
     @GetMapping("/trainings/user/delete/{id}")
-    public String removeTrainingFromUser(@PathVariable Long id){
+    public String removeTrainingFromUser(@PathVariable Long id) {
 
         trainingService.removeTrainingFromUser(id);
 
@@ -113,7 +141,7 @@ public class TrainingController {
 
     @GetMapping("trainings/details/{id}")
     public String trainingDetails(@PathVariable Long id,
-                                  Model model){
+                                  Model model) {
 
         model.addAttribute("training", trainingService.findById(id));
 
