@@ -25,12 +25,12 @@ public class InitDB implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        hallService.initHall();
-        sportService.initSport();
-        coachService.initCoach();
-        trainingService.initTraining();
-        userService.init();
-        cleanUpTrainings.cleanUpTrainings();
+//        hallService.initHall();
+//        sportService.initSport();
+//        coachService.initCoach();
+//        trainingService.initTraining();
+//        userService.init();
+//        cleanUpTrainings.cleanUpTrainings();
 
     }
 }

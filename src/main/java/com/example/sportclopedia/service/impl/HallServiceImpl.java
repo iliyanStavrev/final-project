@@ -26,7 +26,7 @@ public class HallServiceImpl implements HallService {
 
     @Override
     public void initHall() {
-        if (hallRepository.count() > 1){
+        if (hallRepository.count() > 0){
             return;
         }
         Hall hall = new Hall();
