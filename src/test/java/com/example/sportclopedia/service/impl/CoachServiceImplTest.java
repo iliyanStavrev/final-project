@@ -90,5 +90,4 @@ public class CoachServiceImplTest {
         Assertions.assertEquals(testCoach.getPhoneNumber(),coachDtos.get(0).getPhoneNumber());
 
     }
-
 }
