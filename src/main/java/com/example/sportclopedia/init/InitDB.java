@@ -2,6 +2,7 @@ package com.example.sportclopedia.init;
 
 import com.example.sportclopedia.service.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -30,7 +31,7 @@ public class InitDB implements CommandLineRunner {
 //        coachService.initCoach();
 //        trainingService.initTraining();
 //        userService.init();
-//        cleanUpTrainings.cleanUpTrainings();
+    //   cleanUpTrainings.cleanUpTrainings();
 
     }
 }
